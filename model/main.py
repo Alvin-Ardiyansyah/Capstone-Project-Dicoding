@@ -7,7 +7,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 client = Groq(
-    api_key = os.environ.get("GROQ_API_KEY")
+    api_key = os.environ.get("GROQ_API_KEY") # Isi API key grok di bash
 )
 
 
@@ -121,7 +121,6 @@ Tuliskan jawaban dalam bentuk daftar bernomor sesuai urutan skill di atas..
                 {"role": "user", "content": prompt}
             ],
             temperature=0.3,
-            # max_tokens=300
         )
         
         return response.choices[0].message.content
@@ -135,7 +134,6 @@ Tuliskan jawaban dalam bentuk daftar bernomor sesuai urutan skill di atas..
         self.final_score()
         self.recomendations()
         self.result_skill_gap()
-        # return self.result_skill_gap()
         return self.generate_explanation()
     
 Inference.model = model
@@ -148,4 +146,4 @@ role = "backend"
 skill = ["python", "flask"]
 
 inf = Inference(role, skill)
-print(inf.show_output())    # skill -> tingkat kecocokan
+print(inf.show_output())
