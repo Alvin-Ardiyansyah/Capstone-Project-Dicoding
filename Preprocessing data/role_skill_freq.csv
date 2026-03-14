@@ -1,0 +1,1508 @@
+role,clean_skills,count
+backend,0,1590
+backend,4,1589
+backend,8,1589
+backend,ability to work in a fastpaced environment,1
+backend,ability to work independently,1
+backend,ada,58
+backend,agile,12
+backend,agile development,1
+backend,airflow,16
+backend,algorithms,1
+backend,amazon web server aws,3
+backend,angular,1736
+backend,ansible,1309
+backend,ant,423
+backend,apache kafka,2121
+backend,apache spark,553
+backend,apex,60
+backend,api,6
+backend,apis,2
+backend,apl,8
+backend,apt,817
+backend,as part of a team,1
+backend,asp,2336
+backend,assembly,310
+backend,automation,1
+backend,automation testing,13
+backend,aws,23
+backend,azure,10
+backend,bandit,85
+backend,bash,4500
+backend,blazor,494
+backend,boost,51
+backend,build2,10
+backend,bun,38
+backend,business analysis,1
+backend,c,1743
+backend,c#,3334
+backend,c++,2122
+backend,capacitor,62
+backend,cargo,1575
+backend,catch2,87
+backend,chef,128
+backend,chocolatey,843
+backend,ci cd,11
+backend,clojure,250
+backend,cloud,3
+backend,cloud computing,6
+backend,cloud data pipelines,11
+backend,cloud platforms,1
+backend,cmake,1310
+backend,cobol,52
+backend,codeigniter,186
+backend,composer,1080
+backend,computer vision,7
+backend,continuous delivery,14
+backend,continuous integration,15
+backend,cordova,102
+backend,cppunit,47
+backend,crystal reports,45
+backend,css,4675
+backend,cuda,254
+backend,d,1
+backend,dagger,123
+backend,dart,421
+backend,data architecture,1
+backend,data extraction,1
+backend,data governance,1
+backend,data ingestion,8
+backend,data integration,1
+backend,data loading,1
+backend,data manipulation,1
+backend,data pipelines,14
+backend,data processing,6
+backend,data quality,1
+backend,data science,3
+backend,data storage,7
+backend,data structures,3
+backend,data transformation,1
+backend,data_analysis,5
+backend,data_visualization,1
+backend,database,18
+backend,debugging,1
+backend,delphi,169
+backend,deno,125
+backend,development,2
+backend,digital marketing,2
+backend,diversity,2
+backend,django,1451
+backend,docker,8572
+backend,doctest,45
+backend,drupal,158
+backend,electron,322
+backend,elixir,501
+backend,elm,84
+backend,erlang,229
+backend,ership,3
+backend,ethics,1
+backend,etl processes,1
+backend,excel,1
+backend,express,1456
+backend,f#,151
+backend,fastapi,1111
+backend,fastify,196
+backend,flask,1343
+backend,flow,9
+backend,flutter,554
+backend,fortran,46
+backend,gatsby,120
+backend,gdscript,133
+backend,git,36
+backend,gnu gcc,1098
+backend,go,2826
+backend,godot,246
+backend,golang,5
+backend,google test,329
+backend,google_cloud,14
+backend,gradle,2283
+backend,graphql,10
+backend,groovy,623
+backend,grpc,8
+backend,gtk,148
+backend,hadoop,275
+backend,haskell,230
+backend,homebrew,3175
+backend,html,4675
+backend,hugging face transformers,158
+backend,hybrid working,1
+backend,inclusion,2
+backend,innovation,2
+backend,ionic,128
+backend,java,5028
+backend,javascript,7718
+backend,jax,111
+backend,jenkins,1
+backend,jira,1
+backend,jquery,1850
+backend,json,1
+backend,julia,65
+backend,kafka,1
+backend,keras,238
+backend,kotlin,1385
+backend,ktor,169
+backend,kubernetes,4223
+backend,laravel,903
+backend,learn,575
+backend,lest,4
+backend,lisp,154
+backend,lit,23
+backend,llvm's clang,672
+backend,lua,661
+backend,machine_learning,17
+backend,make,2877
+backend,market analysis,1
+backend,marketing,1
+backend,matlab,217
+backend,maven,2978
+backend,mentoring,4
+backend,mentorship,2
+backend,meson,104
+backend,mfc,62
+backend,micronaut,142
+backend,microservices,7
+backend,mongodb,23
+backend,msbuild,1337
+backend,msvc,354
+backend,mysql,18
+backend,nestjs,550
+backend,net,1487
+backend,net 1,1589
+backend,net 5+,2618
+backend,net core,2097
+backend,net maui,169
+backend,next,1011
+backend,nim,28
+backend,ninja,343
+backend,nix,305
+backend,node.js,3393
+backend,nosql,2
+backend,npm,5112
+backend,nuget,1999
+backend,numpy,1510
+backend,nuxt,202
+backend,objective,117
+backend,ocaml,76
+backend,opencv,530
+backend,opengl,352
+backend,pacman,680
+backend,pandas,1546
+backend,performance optimization,1
+backend,perl,311
+backend,ph,1
+backend,phoenix,374
+backend,php,2123
+backend,pip,3378
+backend,play,166
+backend,pnpm,413
+backend,podman,574
+backend,postgresql,37
+backend,power_bi,2
+backend,powershell,1414
+backend,problemsolving,1
+backend,product development,2
+backend,project management,2
+backend,prolog,88
+backend,prototyping,1
+backend,pubsub,15
+backend,pulumi,130
+backend,puppet,135
+backend,python,6054
+backend,pytorch,1
+backend,qmake,92
+backend,qt,394
+backend,quarkus,262
+backend,qwik,14
+backend,r,251
+backend,rabbitmq,2123
+backend,raku,19
+backend,react,3207
+backend,react native,404
+backend,redis,16
+backend,relational databases,1
+backend,remix,42
+backend,remote work,1
+backend,research,1
+backend,rest api,5
+backend,restful api,20
+backend,ruby,1058
+backend,ruby on rails,802
+backend,rust,1755
+backend,sas,19
+backend,scala,814
+backend,scalability,8
+backend,scikit,575
+backend,scons,36
+backend,secret clearance,1
+backend,security,4
+backend,service apis,7
+backend,service oriented architectures,5
+backend,snitch,3
+backend,software,1
+backend,software development,5
+backend,software ing,1
+backend,solid,52
+backend,solidity,131
+backend,spark,1
+backend,spring,2314
+backend,spring boot,2576
+backend,sql,7212
+backend,statistics,1
+backend,svelte,372
+backend,swift,232
+backend,swiftui,132
+backend,symfony,567
+backend,tableau,2
+backend,tauri,119
+backend,tdd,15
+backend,tensorflow,560
+backend,terraform,2206
+backend,test,51
+backend,testing,1
+backend,tidyverse,31
+backend,torch pytorch,527
+backend,typescript,4147
+backend,unit testing,1
+backend,unity 3d,468
+backend,uno platform,26
+backend,unreal engine,188
+backend,validation,1
+backend,vba,220
+backend,visual basic,329
+backend,visual studio solution,1502
+backend,vite,823
+backend,vue,1347
+backend,wasmer,53
+backend,webpack,1469
+backend,wordpress,838
+backend,xamarin,208
+backend,yarn,2210
+backend,zig,86
+data analyst,0,3
+data analyst,4,1
+data analyst,401 k plan,5
+data analyst,401k,5
+data analyst,a b testing,164
+data analyst,ability to meet deadlines,15
+data analyst,ability to work in a fastpaced environment,6
+data analyst,ability to work independently,21
+data analyst,ability to work under pressure,11
+data analyst,accenture,8
+data analyst,access,45
+data analyst,accounting,38
+data analyst,accuracy,48
+data analyst,ad hoc analysis,8
+data analyst,ad hoc reporting,5
+data analyst,adhoc reporting,5
+data analyst,adobe acrobat,7
+data analyst,adobe analytics,13
+data analyst,agile,73
+data analyst,agile development,95
+data analyst,agile development methods,6
+data analyst,agile methodologies,9
+data analyst,agile methodology,11
+data analyst,agile project management,5
+data analyst,ai,16
+data analyst,airflow,83
+data analyst,algorithm development,8
+data analyst,algorithms,30
+data analyst,alibaba,8
+data analyst,alteryx,258
+data analyst,amazon,9
+data analyst,ambiguity tolerance,6
+data analyst,analysis,19
+data analyst,analytic methods,23
+data analyst,analytic skills,5
+data analyst,analytics,98
+data analyst,angular,2
+data analyst,anomaly detection,7
+data analyst,ansible,2
+data analyst,apache kafka,2
+data analyst,apache spark,4
+data analyst,apex,1
+data analyst,api,6
+data analyst,api integration,6
+data analyst,apis,12
+data analyst,application development,5
+data analyst,applied mathematics,8
+data analyst,apps script,6
+data analyst,arcgis,17
+data analyst,artificial intelligence,81
+data analyst,artificial intelligence ai,13
+data analyst,as part of a team,8
+data analyst,asp,7
+data analyst,assembly,14
+data analyst,asset management,5
+data analyst,atlassian,13
+data analyst,attendance,5
+data analyst,audit,7
+data analyst,auditing,6
+data analyst,audits,7
+data analyst,augmented reality,11
+data analyst,aurora,19
+data analyst,automation,58
+data analyst,automation testing,1
+data analyst,aws,528
+data analyst,azure,486
+data analyst,azure sql,6
+data analyst,background check,6
+data analyst,bain,8
+data analyst,banking,9
+data analyst,bash,10
+data analyst,benchmarking,8
+data analyst,benefits,7
+data analyst,best practices,6
+data analyst,bi,5
+data analyst,bi solutions,7
+data analyst,bi tools,14
+data analyst,big data,81
+data analyst,big data technologies,5
+data analyst,big query,6
+data analyst,bigquery,164
+data analyst,bilingual,11
+data analyst,biochemistry,5
+data analyst,bioinformatics,7
+data analyst,biostatistics,19
+data analyst,budget management,5
+data analyst,budgeting,25
+data analyst,building information modeling bim,10
+data analyst,business,38
+data analyst,business acumen,56
+data analyst,business administration,19
+data analyst,business analysis,141
+data analyst,business analyst,9
+data analyst,business analytics,57
+data analyst,business continuity,10
+data analyst,business data analysis,9
+data analyst,business data analyst,12
+data analyst,business definitions,6
+data analyst,business development,14
+data analyst,business insights,14
+data analyst,business intelligence,330
+data analyst,business intelligence bi,51
+data analyst,business intelligence tools,20
+data analyst,business knowledge,6
+data analyst,business metrics,6
+data analyst,business needs,10
+data analyst,business objectives,7
+data analyst,business objects,17
+data analyst,business operations,7
+data analyst,business performance,5
+data analyst,business process improvement,15
+data analyst,business process optimization,6
+data analyst,business processes,10
+data analyst,business questions,6
+data analyst,business requirements,44
+data analyst,business requirements gathering,13
+data analyst,business solutions,7
+data analyst,business strategy,17
+data analyst,business_analysis,18
+data analyst,c,222
+data analyst,c#,12
+data analyst,c++,78
+data analyst,capital one,8
+data analyst,career development,5
+data analyst,cartography,6
+data analyst,cassandra,15
+data analyst,causal inference,8
+data analyst,certifications,5
+data analyst,certified health data analyst certification,5
+data analyst,certified health data analyst chda,12
+data analyst,certified health data analyst chda certification,29
+data analyst,change management,29
+data analyst,change management skills,6
+data analyst,charts,6
+data analyst,chef,1
+data analyst,chemistry,7
+data analyst,ci cd,7
+data analyst,citizenship,8
+data analyst,civil ing,6
+data analyst,claims,6
+data analyst,classification,8
+data analyst,clickstream data,5
+data analyst,clinical data,18
+data analyst,clinical data analysis,14
+data analyst,clinical informatics,21
+data analyst,clinical modules,9
+data analyst,clinical operations,10
+data analyst,clinical outcomes,5
+data analyst,clinical research,13
+data analyst,clinical trials,11
+data analyst,clinical workflows,6
+data analyst,clojure,1
+data analyst,cloud,5
+data analyst,cloud computing,73
+data analyst,cloud environments,5
+data analyst,cloud platforms,5
+data analyst,clustering,13
+data analyst,coaching,15
+data analyst,cobol,6
+data analyst,coding,17
+data analyst,cognos,92
+data analyst,collibra,6
+data analyst,com,10
+data analyst,competitive research,8
+data analyst,complex queries,12
+data analyst,compliance,19
+data analyst,computer ing,7
+data analyst,computer science,125
+data analyst,computer skills,6
+data analyst,computer vision,10
+data analyst,concepts,8
+data analyst,condition assessments,7
+data analyst,confidentiality,15
+data analyst,conflict resolution,8
+data analyst,confluence,18
+data analyst,consulting,32
+data analyst,consumer behavioral insights,6
+data analyst,continuous delivery,2
+data analyst,continuous improvement,29
+data analyst,continuous integration,2
+data analyst,contract management,5
+data analyst,crm systems,19
+data analyst,crossfunctional teams,16
+data analyst,crossselling,6
+data analyst,crystal reports,79
+data analyst,css,36
+data analyst,ctrip,8
+data analyst,curiosity,17
+data analyst,customer engagement,6
+data analyst,customer segmentation,9
+data analyst,customer service,54
+data analyst,customer service skills,5
+data analyst,cyber security,5
+data analyst,d,4
+data analyst,d3,5
+data analyst,dart,1
+data analyst,dashboard,9
+data analyst,dashboard creation,25
+data analyst,dashboard design,6
+data analyst,dashboard development,29
+data analyst,dashboarding,15
+data analyst,dashboards,87
+data analyst,data,11
+data analyst,data accessibility,8
+data analyst,data accuracy,81
+data analyst,data acquisition,27
+data analyst,data aggregation,15
+data analyst,data analysis in healthcare,12
+data analyst,data analysis tools,10
+data analyst,data analyst,70
+data analyst,data analytics tools,5
+data analyst,data architecture,56
+data analyst,data auditing,6
+data analyst,data automation,7
+data analyst,data catalog,5
+data analyst,data cataloging,6
+data analyst,data cleaning,90
+data analyst,data cleansing,125
+data analyst,data collection,156
+data analyst,data compilation,19
+data analyst,data completeness,43
+data analyst,data compliance,12
+data analyst,data confidentiality,6
+data analyst,data consistency,15
+data analyst,data consolidation,7
+data analyst,data conversion,5
+data analyst,data curation,8
+data analyst,data design,5
+data analyst,data dictionaries,25
+data analyst,data dictionary,11
+data analyst,data discovery,9
+data analyst,data dissemination,10
+data analyst,data documentation,12
+data analyst,data enrichment,6
+data analyst,data entry,30
+data analyst,data ethics,15
+data analyst,data evaluation,7
+data analyst,data exploration,23
+data analyst,data extraction,140
+data analyst,data fusion,5
+data analyst,data gathering,27
+data analyst,data generation,5
+data analyst,data governance,203
+data analyst,data ing,78
+data analyst,data ingestion,8
+data analyst,data insights,19
+data analyst,data integration,166
+data analyst,data integrity,143
+data analyst,data interpretation,205
+data analyst,data lake,7
+data analyst,data lakes,12
+data analyst,data lineage,18
+data analyst,data literacy,17
+data analyst,data loading,8
+data analyst,data maintenance,12
+data analyst,data management,370
+data analyst,data management systems,10
+data analyst,data manipulation,171
+data analyst,data mapping,36
+data analyst,data migration,40
+data analyst,data mining,367
+data analyst,data modeling,276
+data analyst,data modelling,29
+data analyst,data models,24
+data analyst,data normalization,13
+data analyst,data pipelines,35
+data analyst,data platforms,10
+data analyst,data policies,8
+data analyst,data preparation,27
+data analyst,data preprocessing,10
+data analyst,data privacy,35
+data analyst,data processing,53
+data analyst,data products,6
+data analyst,data profiling,41
+data analyst,data protection,13
+data analyst,data quality,199
+data analyst,data quality analysis,5
+data analyst,data quality assessment,10
+data analyst,data quality assurance,43
+data analyst,data quality checks,5
+data analyst,data quality control,21
+data analyst,data quality improvement,10
+data analyst,data quality management,67
+data analyst,data quality standards,5
+data analyst,data quality tools,5
+data analyst,data queries,6
+data analyst,data querying,19
+data analyst,data reconciliation,12
+data analyst,data remediation,8
+data analyst,data reporting,139
+data analyst,data reports,7
+data analyst,data requests,5
+data analyst,data requirements,25
+data analyst,data research,11
+data analyst,data retrieval,17
+data analyst,data science,246
+data analyst,data security,85
+data analyst,data segmentation,10
+data analyst,data sets,11
+data analyst,data solutions,8
+data analyst,data sources,13
+data analyst,data sourcing,5
+data analyst,data standardization,14
+data analyst,data standards,20
+data analyst,data stewardship,14
+data analyst,data storage,24
+data analyst,data storytelling,28
+data analyst,data strategy,13
+data analyst,data structures,33
+data analyst,data studio,5
+data analyst,data synthesis,8
+data analyst,data systems,7
+data analyst,data testing,7
+data analyst,data tracking,7
+data analyst,data transfer,7
+data analyst,data transformation,97
+data analyst,data validation,95
+data analyst,data vault,5
+data analyst,data verification,5
+data analyst,data visualisation,6
+data analyst,data visualization tools,37
+data analyst,data visualizations,9
+data analyst,data warehouse,30
+data analyst,data warehouses,9
+data analyst,data warehousing,212
+data analyst,data wrangling,17
+data analyst,data_analysis,1531
+data analyst,data_visualization,977
+data analyst,database,145
+data analyst,database architecture,9
+data analyst,database design,35
+data analyst,database development,19
+data analyst,database maintenance,7
+data analyst,database management,48
+data analyst,database management systems,5
+data analyst,database structures,13
+data analyst,database systems,7
+data analyst,database technologies,8
+data analyst,databricks,26
+data analyst,datadriven decisionmaking,33
+data analyst,datadriven insights,21
+data analyst,datadriven recommendations,5
+data analyst,datadriven solutions,26
+data analyst,datadriven storytelling,5
+data analyst,dax,131
+data analyst,db2,12
+data analyst,dbt,21
+data analyst,deadline management,5
+data analyst,deadlines,8
+data analyst,debugging,5
+data analyst,decipher,5
+data analyst,decision support,6
+data analyst,decision trees,10
+data analyst,decisionmaking,18
+data analyst,deep learning,11
+data analyst,deloitte,8
+data analyst,delphi,1
+data analyst,dental insurance,9
+data analyst,descriptive statistics,11
+data analyst,design,16
+data analyst,detail orientation,11
+data analyst,detailoriented,19
+data analyst,development,28
+data analyst,devops,17
+data analyst,digital marketing,24
+data analyst,digital technologies,7
+data analyst,dimensional modeling,6
+data analyst,disability insurance,6
+data analyst,disaster recovery,12
+data analyst,dissolution testing,5
+data analyst,diversity,21
+data analyst,django,4
+data analyst,docker,34
+data analyst,documentation,70
+data analyst,domo,15
+data analyst,dremel f1,5
+data analyst,ecommerce,17
+data analyst,economics,63
+data analyst,edi,6
+data analyst,education,11
+data analyst,efficiency,11
+data analyst,ehr,9
+data analyst,eit certification,7
+data analyst,elasticsearch,9
+data analyst,electronic medical records,5
+data analyst,emerging technologies,8
+data analyst,emr,8
+data analyst,engagement,5
+data analyst,english,13
+data analyst,english proficiency,5
+data analyst,environmental ing,6
+data analyst,epic,8
+data analyst,epic clarity,35
+data analyst,epic clarity data model,10
+data analyst,epic clarity data model certification,28
+data analyst,epic clarity reporting,46
+data analyst,epic clinical data model,10
+data analyst,epic clinical data model certification,20
+data analyst,epic revenue cycle,10
+data analyst,epic revenue cycle certification,16
+data analyst,epidemiology,18
+data analyst,equal opportunity employer,24
+data analyst,equity,8
+data analyst,erlang,2
+data analyst,erp,11
+data analyst,erp systems,22
+data analyst,ership,73
+data analyst,ership skills,12
+data analyst,erwin,5
+data analyst,ethics,5
+data analyst,etl,130
+data analyst,etl development,6
+data analyst,etl extract transform load,8
+data analyst,etl pipelines,9
+data analyst,etl processes,69
+data analyst,etl s,5
+data analyst,etl tools,14
+data analyst,evaluation,9
+data analyst,everify,6
+data analyst,excel,2666
+data analyst,execution,8
+data analyst,expedia,9
+data analyst,experimental design,12
+data analyst,experimentation,13
+data analyst,exploratory analysis,5
+data analyst,exploratory data analysis,5
+data analyst,facebook,9
+data analyst,facilitation skills,6
+data analyst,fastapi,1
+data analyst,fastpaced environment,24
+data analyst,finance,98
+data analyst,financial accounting,5
+data analyst,financial analysis,47
+data analyst,financial data,7
+data analyst,financial data analysis,12
+data analyst,financial modeling,21
+data analyst,financial reporting,32
+data analyst,financial services,17
+data analyst,financial systems,7
+data analyst,fivetran,8
+data analyst,flask,3
+data analyst,flume,5
+data analyst,forecasting,65
+data analyst,fraud detection,8
+data analyst,g,5
+data analyst,gap,5
+data analyst,gdpr,30
+data analyst,generation,6
+data analyst,ggplot2,8
+data analyst,gis,19
+data analyst,git,218
+data analyst,go,280
+data analyst,gojek,7
+data analyst,golang,3
+data analyst,google,9
+data analyst,google ads,7
+data analyst,google analytics,58
+data analyst,google big query,7
+data analyst,google cloud,8
+data analyst,google data studio,8
+data analyst,google suite,5
+data analyst,google tag manager,5
+data analyst,google_cloud,119
+data analyst,google_sheets,11
+data analyst,grab,8
+data analyst,graphql,4
+data analyst,groovy,3
+data analyst,hadoop,200
+data analyst,hadoop basics,6
+data analyst,hbase,7
+data analyst,health,7
+data analyst,health care,5
+data analyst,health data,5
+data analyst,health informatics,9
+data analyst,health insurance,10
+data analyst,healthcare,26
+data analyst,healthcare administration,6
+data analyst,healthcare data,53
+data analyst,healthcare data analysis,22
+data analyst,healthcare domain,6
+data analyst,healthcare informatics,6
+data analyst,hedis,7
+data analyst,high school diploma,7
+data analyst,high school diploma or ged,6
+data analyst,hipaa,5
+data analyst,hive,36
+data analyst,hplc,5
+data analyst,hr systems,7
+data analyst,hris,9
+data analyst,html,74
+data analyst,html5,1
+data analyst,human resources,6
+data analyst,hybrid working,4
+data analyst,hypothesis testing,143
+data analyst,implementation,12
+data analyst,inclusion,20
+data analyst,independence,10
+data analyst,independent judgment,5
+data analyst,independent work,36
+data analyst,industrial ing,5
+data analyst,industry knowledge,5
+data analyst,industry trends,8
+data analyst,inferential statistics,5
+data analyst,informatica,26
+data analyst,informatics,10
+data analyst,information management,7
+data analyst,information systems,46
+data analyst,information technology,35
+data analyst,ing,63
+data analyst,ing concepts,6
+data analyst,innovation,46
+data analyst,insight generation,6
+data analyst,insights,11
+data analyst,insurance,9
+data analyst,integration,10
+data analyst,integrity,12
+data analyst,internet,5
+data analyst,inventory management,16
+data analyst,it,12
+data analyst,it regulatory compliance,8
+data analyst,it security architecture,8
+data analyst,itil,7
+data analyst,java,242
+data analyst,javascript,251
+data analyst,jde,5
+data analyst,jenkins,8
+data analyst,jira,243
+data analyst,jquery,9
+data analyst,json,5
+data analyst,julia,10
+data analyst,jupyter,48
+data analyst,jupyter notebook,6
+data analyst,kafka,19
+data analyst,kanban,17
+data analyst,keras,8
+data analyst,knowledge management,5
+data analyst,kpi,10
+data analyst,kpi development,5
+data analyst,kpi reporting,6
+data analyst,kpis,19
+data analyst,kubernetes,10
+data analyst,labvantage lims,5
+data analyst,large datasets,8
+data analyst,lazada,7
+data analyst,lean,20
+data analyst,learn,26
+data analyst,learning,7
+data analyst,learning agility,5
+data analyst,life insurance,11
+data analyst,lineage,7
+data analyst,linear algebra,8
+data analyst,linear regression,6
+data analyst,linux,54
+data analyst,logic,5
+data analyst,logistic regression,15
+data analyst,logistics,9
+data analyst,looker,450
+data analyst,lyft,8
+data analyst,machine learning algorithms,7
+data analyst,machine_learning,303
+data analyst,macros,19
+data analyst,maintenance,8
+data analyst,makemytrip,8
+data analyst,management,9
+data analyst,management information systems,6
+data analyst,manufacturing,17
+data analyst,manuscript preparation,5
+data analyst,market analysis,6
+data analyst,market research,12
+data analyst,marketing,21
+data analyst,marketing analytics,32
+data analyst,marketing automation,11
+data analyst,marketing strategy,7
+data analyst,math,12
+data analyst,mathematics,98
+data analyst,matlab,86
+data analyst,matplotlib,63
+data analyst,maven,3
+data analyst,mba,17
+data analyst,mckinsey,8
+data analyst,medicaid,7
+data analyst,medical terminology,10
+data analyst,meeting facilitation,6
+data analyst,mentoring,34
+data analyst,mentorship,7
+data analyst,merchandising,5
+data analyst,metabase,6
+data analyst,metadata,20
+data analyst,metadata management,6
+data analyst,methodologies,12
+data analyst,methods,5
+data analyst,metrics,13
+data analyst,microservices,4
+data analyst,microsoft,9
+data analyst,microsoft access,31
+data analyst,microsoft azure,6
+data analyst,microsoft certifications,9
+data analyst,microsoft excel,114
+data analyst,microsoft office,82
+data analyst,microsoft office suite,93
+data analyst,microsoft outlook,7
+data analyst,microsoft power bi,48
+data analyst,microsoft powerbi,9
+data analyst,microsoft powerpoint,14
+data analyst,microsoft sql,10
+data analyst,microsoft sql server,66
+data analyst,microsoft suite,6
+data analyst,microsoft teams,5
+data analyst,microsoft word,19
+data analyst,microstrategy,54
+data analyst,mitigation assessments,7
+data analyst,model development,5
+data analyst,modeling,22
+data analyst,modelling,5
+data analyst,mongodb,65
+data analyst,motivation,5
+data analyst,mrp,8
+data analyst,ms access,23
+data analyst,ms office,31
+data analyst,ms office suite,26
+data analyst,ms power bi,9
+data analyst,multitouch attribution models,7
+data analyst,mysql,177
+data analyst,natural language processing,14
+data analyst,nestjs,2
+data analyst,net,15
+data analyst,network fundamentals,5
+data analyst,networking,5
+data analyst,nlp,8
+data analyst,no,9
+data analyst,no sql,21
+data analyst,node.js,6
+data analyst,nosql,109
+data analyst,numpy,75
+data analyst,office suite,10
+data analyst,oozie,5
+data analyst,open source technologies,6
+data analyst,opencv,3
+data analyst,operational,8
+data analyst,operations,10
+data analyst,operations research,6
+data analyst,optimization,34
+data analyst,oracle,48
+data analyst,oracle erp,8
+data analyst,oracle sql,6
+data analyst,oracle suite,6
+data analyst,outlook,154
+data analyst,paid parental leave,5
+data analyst,paid time off,9
+data analyst,palantir foundry,10
+data analyst,pandas,151
+data analyst,pandas software,8
+data analyst,pattern identification,6
+data analyst,pattern recognition,10
+data analyst,payroll,8
+data analyst,performance analysis,13
+data analyst,performance improvement,11
+data analyst,performance management,6
+data analyst,performance measurement,14
+data analyst,performance metrics,26
+data analyst,performance monitoring,6
+data analyst,performance optimization,4
+data analyst,perl,23
+data analyst,ph,5
+data analyst,phoenix,1
+data analyst,php,9
+data analyst,physical requirements,5
+data analyst,physics,6
+data analyst,pig,9
+data analyst,pivot tables,39
+data analyst,pl sql,78
+data analyst,plotly,36
+data analyst,policies,11
+data analyst,polygraph,7
+data analyst,population health,7
+data analyst,portfolio management,7
+data analyst,postgresql,178
+data analyst,power apps,7
+data analyst,power automate,13
+data analyst,power platform,7
+data analyst,power point,5
+data analyst,power query,15
+data analyst,power_bi,2435
+data analyst,powerapps,6
+data analyst,powerpoint,526
+data analyst,powerquery,7
+data analyst,powershell,34
+data analyst,ppc campaigns,5
+data analyst,practices,7
+data analyst,predictive analysis,5
+data analyst,predictive analytics,32
+data analyst,predictive modeling,61
+data analyst,predictive models,5
+data analyst,prescriptive analytics,5
+data analyst,presto,6
+data analyst,pricing,12
+data analyst,proactivity,5
+data analyst,probability,6
+data analyst,problem resolution,9
+data analyst,problemsolving,201
+data analyst,problemsolving skills,106
+data analyst,procedures,18
+data analyst,process documentation,8
+data analyst,process improvement,63
+data analyst,process optimization,10
+data analyst,processes,7
+data analyst,procurement,12
+data analyst,product,7
+data analyst,product analyst,9
+data analyst,product analytics,11
+data analyst,product development,5
+data analyst,product management,9
+data analyst,production support,4
+data analyst,professionalism,7
+data analyst,program evaluation,6
+data analyst,program management,15
+data analyst,program management certifications,8
+data analyst,programmatic advertising,6
+data analyst,programming,67
+data analyst,programming languages,44
+data analyst,project management,376
+data analyst,project management skills,6
+data analyst,prototyping,18
+data analyst,public health,24
+data analyst,public policy,8
+data analyst,public trust clearance,5
+data analyst,pulumi,1
+data analyst,punctuality,5
+data analyst,puppet,1
+data analyst,pyspark,73
+data analyst,python,3003
+data analyst,python programming,5
+data analyst,python programming language,20
+data analyst,pytorch,16
+data analyst,qlik,180
+data analyst,qlik sense,6
+data analyst,qlikview,24
+data analyst,qualitative analysis,10
+data analyst,qualitative data analysis,5
+data analyst,qualitative research,6
+data analyst,quality,7
+data analyst,quality assurance,33
+data analyst,quality control,17
+data analyst,quality improvement,6
+data analyst,quality management,13
+data analyst,qualtrics,9
+data analyst,quantitative analysis,34
+data analyst,quantitative discipline,5
+data analyst,quantitative methods,5
+data analyst,quantitative skills,7
+data analyst,queries,14
+data analyst,querying,13
+data analyst,r,1832
+data analyst,r programming,21
+data analyst,r programming language,28
+data analyst,random forest,14
+data analyst,rdbms,9
+data analyst,react,4
+data analyst,reasonable accommodations,6
+data analyst,recommendation systems,5
+data analyst,recommendations,7
+data analyst,reconciliation,6
+data analyst,redcap,8
+data analyst,redis,5
+data analyst,redshift,179
+data analyst,regression,31
+data analyst,regression analysis,17
+data analyst,regression models,5
+data analyst,regulatory compliance,21
+data analyst,regulatory reporting,5
+data analyst,regulatory requirements,5
+data analyst,relational database,9
+data analyst,relational databases,62
+data analyst,remote work,12
+data analyst,report creation,15
+data analyst,report design,5
+data analyst,report development,16
+data analyst,report generation,24
+data analyst,report writing,59
+data analyst,reporting,319
+data analyst,reporting systems,8
+data analyst,reporting tools,16
+data analyst,reports,27
+data analyst,requirement gathering,8
+data analyst,requirements,7
+data analyst,requirements analysis,8
+data analyst,requirements gathering,35
+data analyst,research,70
+data analyst,research design,6
+data analyst,research methods,11
+data analyst,research skills,10
+data analyst,resource management,14
+data analyst,resourcefulness,5
+data analyst,restful api,1
+data analyst,revenue cycle,11
+data analyst,revenue cycle management,8
+data analyst,revenue cycle modules,6
+data analyst,revenue cycle operations,6
+data analyst,risk management,39
+data analyst,roi measurement,7
+data analyst,root cause analysis,24
+data analyst,rshiny,12
+data analyst,ruby,19
+data analyst,rust,2
+data analyst,s,21
+data analyst,saas,7
+data analyst,safety,6
+data analyst,sales,10
+data analyst,salesforce,41
+data analyst,salesforce marketing cloud,10
+data analyst,sap,265
+data analyst,sap bw,5
+data analyst,sap erp,7
+data analyst,sap mm,5
+data analyst,sas,711
+data analyst,scala,119
+data analyst,scalability,6
+data analyst,scheduling,6
+data analyst,scikit,24
+data analyst,scikit-learn,5
+data analyst,scipy,8
+data analyst,scripting,18
+data analyst,scripting languages,6
+data analyst,scrum,33
+data analyst,sdlc,6
+data analyst,seaborn,30
+data analyst,secret clearance,8
+data analyst,secret security clearance,5
+data analyst,security,9
+data analyst,security clearance,8
+data analyst,segmentation,8
+data analyst,selenium,7
+data analyst,selfmotivation,33
+data analyst,selfstarter,19
+data analyst,seo,8
+data analyst,service level agreements,5
+data analyst,servicenow,10
+data analyst,sharepoint,216
+data analyst,shell,30
+data analyst,shopee,8
+data analyst,shopify,9
+data analyst,simulation,5
+data analyst,six sigma,20
+data analyst,skyscanner,9
+data analyst,snowflake,516
+data analyst,software,17
+data analyst,software development,35
+data analyst,software ing,15
+data analyst,software testing,7
+data analyst,solidity,2
+data analyst,spark,259
+data analyst,spark basics,9
+data analyst,spatial analysis,5
+data analyst,splunk,37
+data analyst,spotfire,12
+data analyst,spreadsheet,242
+data analyst,spreadsheets,20
+data analyst,spring boot,2
+data analyst,spss,268
+data analyst,sql,5087
+data analyst,sql proficiency,6
+data analyst,sql queries,18
+data analyst,sql_server,74
+data analyst,sqoop,5
+data analyst,ss,194
+data analyst,ssas,5
+data analyst,ssis,161
+data analyst,standard operating procedures,5
+data analyst,standardization,5
+data analyst,standards,7
+data analyst,stata,26
+data analyst,statistical analyses,8
+data analyst,statistical concepts,11
+data analyst,statistical forecasting,10
+data analyst,statistical methods,96
+data analyst,statistical modeling,119
+data analyst,statistical modelling,17
+data analyst,statistical models,12
+data analyst,statistical packages,9
+data analyst,statistical programming,8
+data analyst,statistical skills,5
+data analyst,statistical software,33
+data analyst,statistical techniques,82
+data analyst,statistical tools,9
+data analyst,statistics,532
+data analyst,stem,10
+data analyst,stored procedures,18
+data analyst,storytelling,22
+data analyst,strategic analysis,5
+data analyst,strategy,10
+data analyst,strategy documents,17
+data analyst,structured data,11
+data analyst,structured query language sql,7
+data analyst,supervisory skills,5
+data analyst,supply chain,15
+data analyst,supply chain management,10
+data analyst,survey design,8
+data analyst,surveys,6
+data analyst,survival analysis,5
+data analyst,swift,6
+data analyst,system administration,9
+data analyst,system specifications,5
+data analyst,system testing,5
+data analyst,systems,5
+data analyst,systems analysis,14
+data analyst,t,87
+data analyst,tableau,2823
+data analyst,tableau desktop,5
+data analyst,tableau prep,12
+data analyst,tables,16
+data analyst,tax reporting,5
+data analyst,tdd,1
+data analyst,team building,5
+data analyst,team environment,10
+data analyst,team ership,13
+data analyst,team management,7
+data analyst,team work,20
+data analyst,teams,6
+data analyst,technical,5
+data analyst,technical abilities,24
+data analyst,technical documentation,16
+data analyst,technical expertise,5
+data analyst,technical issues,5
+data analyst,technical requirements,10
+data analyst,technical skills,61
+data analyst,technical support,7
+data analyst,technical writing,36
+data analyst,technologies,7
+data analyst,technology,8
+data analyst,tensorflow,29
+data analyst,teradata,12
+data analyst,terminal,19
+data analyst,terraform,5
+data analyst,test,1
+data analyst,testing,32
+data analyst,text mining,7
+data analyst,threat intelligence,5
+data analyst,time series analysis,12
+data analyst,toad,5
+data analyst,tools,9
+data analyst,top secret sci clearance,5
+data analyst,training,46
+data analyst,transformation,5
+data analyst,travel,14
+data analyst,traveloka,8
+data analyst,trend analysis,42
+data analyst,trend identification,6
+data analyst,trip,8
+data analyst,ts sci clearance,10
+data analyst,tsql,24
+data analyst,typescript,8
+data analyst,u,14
+data analyst,uber,8
+data analyst,ui,1
+data analyst,unit testing,4
+data analyst,unix,61
+data analyst,unix linux,14
+data analyst,unix shell scripting,5
+data analyst,unstructured data,14
+data analyst,upwork,8
+data analyst,urgency,5
+data analyst,us citizenship,9
+data analyst,usability testing,28
+data analyst,user,2
+data analyst,user acceptance testing,10
+data analyst,user interface design,5
+data analyst,user observation,10
+data analyst,validation,9
+data analyst,vba,213
+data analyst,vendor management,6
+data analyst,version control,6
+data analyst,views,10
+data analyst,visio,109
+data analyst,vision,6
+data analyst,vision insurance,8
+data analyst,visual basic,14
+data analyst,visual_basic,34
+data analyst,visualization,34
+data analyst,visualization tools,8
+data analyst,visualizations,6
+data analyst,vlookups,11
+data analyst,vue,5
+data analyst,vulnerability,6
+data analyst,waterfall,5
+data analyst,web analytics,10
+data analyst,web development,8
+data analyst,windows,15
+data analyst,word,481
+data analyst,word processing,5
+data analyst,workday,10
+data analyst,workflow,5
+data analyst,workflow analysis,5
+data analyst,workflows,6
+data analyst,writing,18
+data analyst,writing skills,12
+data analyst,xml,19
+data analyst,yarn,1
+frontend,0,229
+frontend,4,228
+frontend,8,228
+frontend,ada,9
+frontend,agile,1
+frontend,agile development,1
+frontend,algorithms,1
+frontend,amazon web server aws,2
+frontend,analytics,2
+frontend,angular,1360
+frontend,angular basics,6
+frontend,ansible,105
+frontend,ant,56
+frontend,apache kafka,51
+frontend,apache spark,21
+frontend,apex,14
+frontend,apis,2
+frontend,apl,3
+frontend,apt,102
+frontend,asp,387
+frontend,assembly,72
+frontend,bash,882
+frontend,blazor,68
+frontend,boost,3
+frontend,bootstrap,19
+frontend,browser tools,10
+frontend,build2,3
+frontend,bun,46
+frontend,c,373
+frontend,c#,737
+frontend,c++,401
+frontend,capacitor,153
+frontend,cargo,226
+frontend,catch2,4
+frontend,chef,6
+frontend,chemistry,1
+frontend,chocolatey,264
+frontend,ci cd,9
+frontend,clojure,20
+frontend,cmake,141
+frontend,cobol,9
+frontend,codeigniter,50
+frontend,composer,295
+frontend,computer vision,2
+frontend,cordova,159
+frontend,cppunit,4
+frontend,crystal reports,5
+frontend,css,3882
+frontend,cuda,34
+frontend,dagger,15
+frontend,dart,265
+frontend,data science,4
+frontend,data structures,1
+frontend,data_analysis,5
+frontend,database,1
+frontend,deep learning,4
+frontend,delphi,37
+frontend,deno,106
+frontend,development,1
+frontend,django,263
+frontend,docker,1859
+frontend,doctest,1
+frontend,drupal,95
+frontend,electron,345
+frontend,elixir,49
+frontend,elm,31
+frontend,ember,6
+frontend,erlang,14
+frontend,evaluation,1
+frontend,express,1233
+frontend,f#,11
+frontend,fastapi,101
+frontend,fastify,96
+frontend,financial modeling,1
+frontend,flask,187
+frontend,flow,24
+frontend,flutter,333
+frontend,fortran,4
+frontend,foundation,6
+frontend,friendly,6
+frontend,gatsby,275
+frontend,gdscript,50
+frontend,git,22
+frontend,gnu gcc,94
+frontend,go,240
+frontend,godot,93
+frontend,google test,29
+frontend,gradle,404
+frontend,groovy,54
+frontend,gtk,23
+frontend,hadoop,12
+frontend,haskell,46
+frontend,homebrew,1165
+frontend,html,3880
+frontend,html5,5
+frontend,hugging face transformers,25
+frontend,ionic,252
+frontend,java,789
+frontend,javascript,4606
+frontend,jax,4
+frontend,jquery,1006
+frontend,js basics,6
+frontend,julia,4
+frontend,keras,35
+frontend,kotlin,216
+frontend,ktor,11
+frontend,kubernetes,399
+frontend,laravel,278
+frontend,learn,82
+frontend,lest,3
+frontend,lisp,19
+frontend,lit,88
+frontend,llvm's clang,53
+frontend,lua,164
+frontend,machine_learning,7
+frontend,make,261
+frontend,materialize,6
+frontend,matlab,65
+frontend,maven,326
+frontend,meson,4
+frontend,mfc,4
+frontend,micronaut,3
+frontend,mongodb,3
+frontend,msbuild,104
+frontend,msvc,36
+frontend,mysql,2
+frontend,nestjs,337
+frontend,net,328
+frontend,net 1,228
+frontend,net 5+,378
+frontend,net core,269
+frontend,net maui,25
+frontend,next,1625
+frontend,nim,4
+frontend,ninja,14
+frontend,nix,44
+frontend,node.js,2614
+frontend,npm,3469
+frontend,nuget,269
+frontend,numpy,181
+frontend,nuxt,418
+frontend,objective,67
+frontend,ocaml,9
+frontend,opencv,78
+frontend,opengl,115
+frontend,pacman,118
+frontend,pandas,192
+frontend,performance optimization,8
+frontend,perl,29
+frontend,phoenix,31
+frontend,php,950
+frontend,pip,509
+frontend,play,10
+frontend,pnpm,697
+frontend,podman,51
+frontend,postgresql,1
+frontend,power_bi,1
+frontend,powershell,328
+frontend,problemsolving,1
+frontend,production support,1
+frontend,prolog,22
+frontend,pulumi,6
+frontend,puppet,18
+frontend,python,1079
+frontend,qmake,12
+frontend,qt,57
+frontend,quarkus,7
+frontend,qwik,43
+frontend,r,53
+frontend,r programming,2
+frontend,rabbitmq,93
+frontend,raku,3
+frontend,react,3244
+frontend,react basics,9
+frontend,react native,610
+frontend,react redux,6
+frontend,redux,12
+frontend,remix,148
+frontend,report writing,1
+frontend,requirements analysis,1
+frontend,research,2
+frontend,rest api,7
+frontend,ruby,192
+frontend,ruby on rails,141
+frontend,rust,257
+frontend,sas,33
+frontend,sass,7
+frontend,scala,24
+frontend,scalability,1
+frontend,scikit,82
+frontend,snitch,2
+frontend,software development,2
+frontend,software testing,1
+frontend,solid,98
+frontend,solidity,59
+frontend,spring,115
+frontend,spring boot,175
+frontend,sql,1236
+frontend,svelte,404
+frontend,swift,157
+frontend,swiftui,114
+frontend,symfony,75
+frontend,tailwind css,11
+frontend,tauri,74
+frontend,tdd,1
+frontend,tensorflow,119
+frontend,terraform,134
+frontend,test,3
+frontend,tidyverse,4
+frontend,torch pytorch,66
+frontend,typescript,3428
+frontend,ui,6
+frontend,unit e2e testing,5
+frontend,unity 3d,224
+frontend,uno platform,8
+frontend,unreal engine,92
+frontend,user,6
+frontend,ux,6
+frontend,vba,55
+frontend,version control,1
+frontend,visual basic,90
+frontend,visual studio solution,270
+frontend,vite,1638
+frontend,vue,1116
+frontend,wasmer,14
+frontend,web development,1
+frontend,webpack,2385
+frontend,wordpress,780
+frontend,xamarin,57
+frontend,yarn,2114
+frontend,zig,16
