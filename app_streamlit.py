@@ -592,6 +592,67 @@ def results_page() -> None:
     # Parse the numbered explanation into per-skill expanders
     _render_explanation_accordion(explanation, recommendations)
 
+    # ── Recommended Projects Card ─────────────────────────────────────────
+    rec_projects = r.get("recommended_projects", [])
+    if rec_projects:
+        st.markdown("<hr>", unsafe_allow_html=True)
+        st.markdown('<div class="card-title">💻 Referensi Proyek Portofolio</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">'
+            'Tingkatkan portofolio Anda dengan mengerjakan proyek-proyek di bawah ini '
+            'yang direkomendasikan karena paling cocok dengan <b>skill Anda saat ini</b>!</p>',
+            unsafe_allow_html=True,
+        )
+        
+        for p in rec_projects:
+            score = p.get("score", 0)
+            if score >= 0.8:
+                score_color = "#4caf50" # Green
+                match_text = "Sangat Cocok"
+            elif score >= 0.5:
+                score_color = "#ffb300" # Orange-Yellow
+                match_text = "Menengah"
+            else:
+                score_color = "#ef5350" # Red
+                match_text = "Menantang"
+                
+            diff_colors = {
+                "beginner": "#4caf50",
+                "intermediate": "#2196f3",
+                "advanced": "#9c27b0"
+            }
+            diff_color = diff_colors.get(p.get("difficulty", "beginner"), "#888")
+            
+            # Highlight matched skills
+            matched_set = set(p.get("skills_matched", []))
+            skills_req_html = ""
+            for s in p.get("skills_required", []):
+                if s in matched_set:
+                    # Highlight green if user has it
+                    skills_req_html += f'<span style="background: #1b3320; border: 1px solid #4caf50; color: #4caf50; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-right: 4px; display: inline-block; margin-bottom: 4px;">{s} ✓</span>'
+                else:
+                    # Grey out if user doesn't have it
+                    skills_req_html += f'<span style="background: #222; border: 1px solid #444; color: #888; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-right: 4px; display: inline-block; margin-bottom: 4px;">{s}</span>'
+            
+            st.markdown(f"""
+            <div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; border-left: 4px solid {score_color}; transition: transform 0.2sease, box-shadow 0.2s ease;" class="hover-card">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                    <div style="font-weight: 600; font-size: 1.1rem; color: #fff;">{p.get('name', 'Project').title()}</div>
+                    <div style="background: {diff_color}22; color: {diff_color}; border: 1px solid {diff_color}; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">{p.get('difficulty', '')}</div>
+                </div>
+                <div style="color: #aaa; font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.5;">
+                    {p.get('description', '')}
+                </div>
+                <div>
+                    <div style="font-size: 0.75rem; color: #888; margin-bottom: 6px; font-weight: bold;">
+                        <span>MATCH SCORE: <span style="color: {score_color};">{int(score*100)}% ({match_text})</span></span>
+                    </div>
+                    <div>{skills_req_html}</div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+
     # ── Conclusion / Roadmap Card ─────────────────────────────────────────
     conclusion = r.get("conclusion", "")
     if conclusion:
