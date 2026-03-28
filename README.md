@@ -221,4 +221,4 @@ Health check — returns model loading status.
 
 ---
 
-*Built with ❤️ for AI-Driven Career Advancement — Dicoding Capstone Project 2026.*
+*Group DB10-G002, Dicoding Bootcamp Batch 10 : Artificial Inteligence.*
