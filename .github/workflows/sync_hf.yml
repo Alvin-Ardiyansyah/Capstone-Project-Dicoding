@@ -1,0 +1,23 @@
+name: Sync to Hugging Face
+on:
+  push:
+    branches:
+      - skill_gap_model
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to huggingface
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git remote add space https://nbilmkrim:$HF_TOKEN@huggingface.co/spaces/nbilmkrim/GapSense-API
+          git push --force space skill_gap_model:main
