@@ -26,8 +26,9 @@ from groq import Groq
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 
-from services import Normalize_Input, generate_explanation, GapSenseAnalyzer, generate_conclusion
+from services import Normalize_Input, generate_explanation,GapSenseAnalyzer, generate_conclusion
 from services.trend_model import SkillTrendPredictor
+from services.project_recommender import recommend_projects
 
 # ─── Load environment variables ───────────────────────────────────────────────
 load_dotenv()
@@ -135,6 +136,7 @@ class GapSenseResponse(BaseModel):
     explanation: str
     conclusion: str
     user_context: dict = {}
+    recommended_projects: list[dict] = []
 
 
 class SkillTrendRequest(BaseModel):
@@ -242,6 +244,9 @@ async def analyze_gap_sense(request: GapSenseRequest):
             user_context=user_context,
         )
 
+        # Get project recommendations based on user's current skills
+        recommended_projects = recommend_projects(normalized_skills)
+
         return GapSenseResponse(
             role=request.role,
             user_skills=normalized_skills,
@@ -250,6 +255,7 @@ async def analyze_gap_sense(request: GapSenseRequest):
             explanation=explanation,
             conclusion=conclusion,
             user_context=user_context,
+            recommended_projects=recommended_projects,
         )
 
     except HTTPException:
