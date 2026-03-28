@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment secrets
+.env
+modeling/.env
+
+# Jupyter notebooks (not needed for deployment)
+Preprocessing data/*.ipynb
+Preprocessing data/.ipynb_checkpoints/
+
+# Extra folders not needed for API
+fitur_tambahan/
+
+# OS files
+.DS_Store
+Thumbs.db

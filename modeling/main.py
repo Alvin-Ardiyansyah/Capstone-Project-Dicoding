@@ -4,16 +4,18 @@ Provides endpoints for skill gap analysis and skill trend prediction.
 """
 
 import os
-# Fix for network timeouts connecting to HuggingFace from local ISP
-os.environ["HF_HUB_OFFLINE"] = "1"
+import platform
+
 os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 # Force TensorFlow >= 2.16 to use Keras 3 (native format for our time_series_2.keras)
 os.environ["TF_USE_LEGACY_KERAS"] = "0"
 
 # Fix for Windows DLL conflicts between PyTorch and TensorFlow
-import torch
-import sentence_transformers
+# (not needed on Linux / Docker containers)
+if platform.system() == "Windows":
+    import torch
+    import sentence_transformers
 
 import pickle
 from contextlib import asynccontextmanager
