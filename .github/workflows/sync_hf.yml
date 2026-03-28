@@ -20,4 +20,4 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git remote add space https://nbilmkrim:$HF_TOKEN@huggingface.co/spaces/nbilmkrim/GapSense-API
-          git push --force space skill_gap_model:main
+          git push --force space HEAD:main
