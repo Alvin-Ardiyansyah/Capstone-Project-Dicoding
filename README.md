@@ -20,6 +20,7 @@
 | **Skill Trend Forecasting** | Employs a trained Keras Dense NN model to predict next-month demand for specific skills based on historical job posting data. |
 | **Interactive Visualizations** | Single-chart trend viewer with dropdown selector, recommendation progress bars, and accordion-style AI explanations — all in a premium dark-mode UI. |
 | **Score Interpretation** | Contextual labels (🌱 Tahap Awal → 🏆 Expert-Ready) help users understand what their score means relative to their career stage. |
+| **Dynamic Project Recommender** | Suggests exactly 3 robust, highly-tailored portfolio projects to build based on the user's specific matched skills combining _difflib_ and Content-based filtering (`project_recommender.py`). |
 
 ---
 
@@ -41,7 +42,8 @@ graph LR
 3. **Gap Analysis** → Cosine similarity + importance scoring + role-based noise filtering (`model_gap.py`)
 4. **AI Generation** → Personalized per-skill explanations + career roadmap conclusion (`explanation.py`)
 5. **Trend Prediction** → Historical demand data + next-month forecast (`trend_model.py`)
-6. **Presentation** → Interactive dashboard with accordion, charts, and contextual scoring (`app_streamlit.py`)
+6. **Project Recommender** → Match user skills against industry-standard projects to recommend exact portfolio steps (`project_recommender.py`)
+7. **Presentation** → Interactive dashboard with accordion, charts, dynamic recommendation cards, and contextual scoring (`app_streamlit.py`)
 
 ## 📂 Repository Architecture (2-Branch System)
 
