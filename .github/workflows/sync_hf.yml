@@ -15,15 +15,28 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Push to huggingface
+      - name: Deploy to Hugging Face Spaces
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git remote add space https://nbilmkrim:$HF_TOKEN@huggingface.co/spaces/nbilmkrim/GapSense-API
-          git checkout --orphan hf_deploy
-          git add -A
-          # Configure dummy git user for the commit
-          git config --global user.email "bot@gapsense.local"
-          git config --global user.name "Deploy Bot"
-          git commit -m "Deploy to Hugging Face"
-          git push --force space hf_deploy:main
+          pip install huggingface_hub
+          python -c "
+          from huggingface_hub import HfApi
+          import os
+
+          # Initialize API with token
+          api = HfApi(token=os.environ.get('HF_TOKEN'))
+          
+          # Upload entire directory to Space, ignoring unnecessary files
+          api.upload_folder(
+              folder_path='.',
+              repo_id='nbilmkrim/GapSense-API',
+              repo_type='space',
+              ignore_patterns=[
+                  '.git/*', '.github/*', '.venv/*', 'venv/*', 'env/*',
+                  '*/__pycache__/*', '*.pyc', '*.pyo', '.env', 'modeling/.env',
+                  'Preprocessing data/*.ipynb', 'Preprocessing data/.ipynb_checkpoints/*',
+                  'fitur_tambahan/*', '.DS_Store', 'Thumbs.db', '.vscode/*'
+              ]
+          )
+          "
