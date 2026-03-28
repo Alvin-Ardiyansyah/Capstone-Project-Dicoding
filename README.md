@@ -47,10 +47,10 @@ graph LR
 
 To maintain a clean separation of concerns and enable seamless "zero-budget" deployments, this project is divided into two distinct branches. **You must switch branches to view the specific codebase:**
 
-### Branch 1: `frontend` (Streamlit UI)
+### Branch 1: `front-end` (Streamlit UI)
 Contains only the web interface code. Deployed directly to **Streamlit Community Cloud**.
 ```text
-(frontend branch)
+(front-end branch)
 .
 ├── app_streamlit.py           # Streamlit UI, interactive charts
 ├── .env                       # Frontend environment variables
@@ -58,10 +58,10 @@ Contains only the web interface code. Deployed directly to **Streamlit Community
 └── README.md
 ```
 
-### Branch 2: `ai-model` (FastAPI Backend)
+### Branch 2: `skill_gap_model` (FastAPI Backend)
 Contains the core machine learning models, API, and datasets. Deployed to **Hugging Face Spaces**.
 ```text
-(ai-model branch)
+(skill_gap_model branch)
 .
 ├── modeling/                  # Core application logic
 │   ├── data/                  # Keras model (.keras) & trend dataset (.csv)
@@ -108,10 +108,10 @@ git clone <repository-url>
 cd "Capstone-Project-Dicoding"
 ```
 
-### 2. Setup FastAPI Backend (Branch: `ai-model`)
+### 2. Setup FastAPI Backend (Branch: `skill_gap_model`)
 Checkout the AI model branch:
 ```bash
-git checkout ai-model
+git checkout skill_gap_model
 python -m venv .venv
 
 # Windows
@@ -134,10 +134,10 @@ python main.py
 ```
 > The API will be hosted at: **http://localhost:8000** (Swagger UI: `/docs`)
 
-### 3. Setup Streamlit Frontend (Branch: `frontend`)
+### 3. Setup Streamlit Frontend (Branch: `front-end`)
 Open a **new terminal window** and checkout the frontend branch:
 ```bash
-git checkout frontend
+git checkout front-end
 python -m venv venv
 
 # Windows
