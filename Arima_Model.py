@@ -38,7 +38,7 @@ def load_model(path):
     np.random.seed(42)
 
     for skill in skills:
-        trend_direction = trend_map.get(skill, 'stable')
+        trend_direction = trend_map.get(skill.lower(), 'STABIL')
         target = np.random.randint(5, 12)
         current_value = target
 
@@ -81,7 +81,7 @@ def run_model(ts, skill, trend_map):
 
     data['count'] = data['count'].fillna(0)
     data['smooth'] = data['count'].ewm(span=6).mean()
-    series = data['count']
+    series = data['smooth']
 
     model = ARIMA(series, order=(1,1,1))
     model_fit = model.fit()
