@@ -14,6 +14,93 @@ from dotenv import load_dotenv
 load_dotenv()
 API_BASE_URL = os.getenv("BACKEND_API_URL", "http://localhost:8000")
 
+TREND_ROLE_BLOCKLISTS = {
+    "frontend": {
+        "python", "java", "php", "c#", "c++", "go", "r", "numpy", "pandas",
+        "scikit-learn", "tensorflow", "pytorch", "django", "flask", "laravel",
+        "docker", "kubernetes", "mysql", "postgresql", "mongodb", "redis", "oracle",
+    },
+    "backend": {
+        "html", "css", "jquery", "sass", "tailwind css", "bootstrap",
+        "figma", "photoshop", "illustrator", "numpy", "pandas",
+        "scikit-learn", "tensorflow", "pytorch", "tableau", "power bi", "excel", "r",
+    },
+    "data analyst": {
+        "html", "css", "javascript", "typescript", "react", "angular", "vue",
+        "node.js", "webpack", "vite", "next", "express", "nestjs",
+    },
+}
+
+DISPLAY_SKILL_ALIASES = {
+    "power_bi": "Power BI",
+    "google_analytics": "Google Analytics",
+    "data_visualization": "Data Visualization",
+    "data_analysis": "Data Analysis",
+    "machine_learning": "Machine Learning",
+    "business_intelligence": "Business Intelligence",
+    "google_cloud": "Google Cloud",
+    "google_sheets": "Google Sheets",
+    "sql_server": "SQL Server",
+    "django_rest_framework": "Django REST Framework",
+    "node.js": "Node.js",
+    "next.js": "Next.js",
+    "typescript": "TypeScript",
+    "javascript": "JavaScript",
+    "react": "React",
+    "vue": "Vue",
+    "jquery": "jQuery",
+    "aws": "AWS",
+    "excel": "Excel",
+    "sql": "SQL",
+    "r": "R",
+    "sas": "SAS",
+    "api": "API",
+    "jwt": "JWT",
+    "ci/cd": "CI/CD",
+    ".net": ".NET",
+}
+
+FRONTEND_SKILL_ALIASES = {
+    "js": "javascript",
+    "ts": "typescript",
+    "golang": "go",
+    "go lang": "go",
+    "nodejs": "node.js",
+    "node js": "node.js",
+    "reactjs": "react",
+    "react js": "react",
+    "vuejs": "vue",
+    "vue js": "vue",
+    "nextjs": "next.js",
+    "next js": "next.js",
+    "power bi": "power_bi",
+    "powerbi": "power_bi",
+    "google analytics": "google_analytics",
+    "data visualization": "data_visualization",
+    "data visualisation": "data_visualization",
+    "data viz": "data_visualization",
+    "data analysis": "data_analysis",
+    "data analytics": "data_analysis",
+}
+
+
+def format_skill_label(skill: str) -> str:
+    """Convert canonical skill names into user-facing labels."""
+    normalized = str(skill).strip().lower()
+    if normalized in DISPLAY_SKILL_ALIASES:
+        return DISPLAY_SKILL_ALIASES[normalized]
+    return normalized.replace("_", " ").title()
+
+
+def normalize_skill_input(skill: str) -> str:
+    """Apply lightweight client-side normalization for common aliases/slang."""
+    normalized = str(skill).strip().lower()
+    normalized = normalized.replace("-", " ")
+    normalized = normalized.replace("_", " ")
+    normalized = " ".join(normalized.split())
+    normalized = FRONTEND_SKILL_ALIASES.get(normalized, normalized)
+    return normalized
+
 # ─── Page Config ──────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="GapSense - Career Skill Gap Analysis",
@@ -245,6 +332,22 @@ def call_skill_trend_api(skills: list[str]) -> dict | None:
         return None
 
 
+def filter_trends_for_role(trend_data: dict | None, role: str) -> dict | None:
+    """Keep only trend items that are still relevant to the selected role."""
+    if not trend_data or not trend_data.get("trends"):
+        return trend_data
+
+    blocked = TREND_ROLE_BLOCKLISTS.get(role, set())
+    filtered = [
+        trend for trend in trend_data["trends"]
+        if trend.get("skill", "").lower() not in blocked
+    ]
+    return {
+        **trend_data,
+        "trends": filtered,
+    }
+
+
 # ─── Score Interpretation ─────────────────────────────────────────────────────
 _SCORE_INTERPRETATION = [
     (25, "🌱", "Tahap Awal", "Normal untuk pemula — fokus pada skill fondasi terlebih dahulu.", "#0f2010"),
@@ -346,7 +449,7 @@ def home_page() -> None:
             # A little CSS trick to align the button with the input
             st.markdown("<style>div.stButton > button:first-child { width: 100%; }</style>", unsafe_allow_html=True)
             if st.button("Add ➕"):
-                skill_clean = new_skill.strip().lower()
+                skill_clean = normalize_skill_input(new_skill)
                 if skill_clean and skill_clean not in st.session_state.skills_list:
                     st.session_state.skills_list.append(skill_clean)
                     st.rerun()
@@ -363,11 +466,17 @@ def home_page() -> None:
         """, unsafe_allow_html=True)
 
         if st.session_state.skills_list:
-            tags_html = "".join(
-                f'<span class="skill-tag" style="margin-bottom: 8px;">{s.upper()}</span>'
-                for s in st.session_state.skills_list
+            edited_skills = st.multiselect(
+                "Your current skills",
+                options=st.session_state.skills_list,
+                default=st.session_state.skills_list,
+                format_func=format_skill_label,
+                label_visibility="collapsed",
+                key="skill_chip_editor",
             )
-            st.markdown(tags_html, unsafe_allow_html=True)
+            if edited_skills != st.session_state.skills_list:
+                st.session_state.skills_list = edited_skills
+                st.rerun()
         else:
             st.markdown(
                 '<div style="text-align: center; color: #555; padding: 2rem 0; font-family: \'Space Mono\', monospace;">'
@@ -427,6 +536,7 @@ def home_page() -> None:
                         if rec_skills:
                             with st.spinner("Fetching market trends..."):
                                 trend_result = call_skill_trend_api(rec_skills)
+                                trend_result = filter_trends_for_role(trend_result, selected_role)
 
                         st.session_state.results = gap_result
                         st.session_state.trends = trend_result
@@ -443,7 +553,15 @@ def results_page() -> None:
     """Renders the analysis results, skill recommendations, and trend charts."""
     r = st.session_state.results
     score = r["score"]
-    recommendations = r.get("recommendations", [])
+    recommendations = sorted(
+        r.get("recommendations", []),
+        key=lambda rec: (
+            rec.get("final_score", 0),
+            rec.get("importance", 0),
+            rec.get("similarity", 0),
+        ),
+        reverse=True,
+    )
     explanation = r["explanation"]
     user_skills = r["user_skills"]
     role = r["role"]
@@ -507,7 +625,7 @@ def results_page() -> None:
 
                 st.markdown(f"""
                 <div class="rec-row">
-                  <span class="rec-skill-name">{rec['skill']}</span>
+                  <span class="rec-skill-name">{format_skill_label(rec['skill'])}</span>
                   <div class="rec-bar-track">
                     <div class="rec-bar-fill" style="width:{pct}%;background:{bar_color};"></div>
                   </div>
@@ -518,7 +636,7 @@ def results_page() -> None:
     # ── RIGHT ─────────────────────────────────────────────────────────────────
     with col_right:
         st.markdown('<div class="card-title">Your Current Skills</div>', unsafe_allow_html=True)
-        tags_html = "".join(f'<span class="skill-tag">{s}</span>' for s in user_skills)
+        tags_html = "".join(f'<span class="skill-tag">{format_skill_label(s)}</span>' for s in user_skills)
         st.markdown(tags_html, unsafe_allow_html=True)
 
         # ── User Profile Summary Card ─────────────────────────────────────
@@ -569,7 +687,7 @@ def results_page() -> None:
                 unsafe_allow_html=True,
             )
             trends = trend_data["trends"]
-            skill_names = [t["skill"].title() for t in trends]
+            skill_names = [format_skill_label(t["skill"]) for t in trends]
             selected_skill = st.selectbox(
                 "Select skill to view trend",
                 skill_names,
@@ -579,6 +697,13 @@ def results_page() -> None:
             # Find and render the selected trend
             sel_idx = skill_names.index(selected_skill) if selected_skill in skill_names else 0
             render_trend_chart(trends[sel_idx], sel_idx)
+        elif recommendations:
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown(
+                '<div class="card-title">ðŸ“ˆ Skill Demand Trend</div>',
+                unsafe_allow_html=True,
+            )
+            st.caption("No role-relevant trend data available for the current top recommendations.")
 
     # ── Full-width: AI Explanation (Accordion) ────────────────────────────
     st.markdown("<hr>", unsafe_allow_html=True)
@@ -603,8 +728,10 @@ def results_page() -> None:
             'yang direkomendasikan karena paling cocok dengan <b>skill Anda saat ini</b>!</p>',
             unsafe_allow_html=True,
         )
-        
-        for p in rec_projects:
+
+        project_columns = st.columns(2, gap="large") if len(rec_projects) > 3 else [st.container()]
+
+        for idx, p in enumerate(rec_projects):
             score = p.get("score", 0)
             if score >= 0.8:
                 score_color = "#4caf50" # Green
@@ -629,28 +756,36 @@ def results_page() -> None:
             for s in p.get("skills_required", []):
                 if s in matched_set:
                     # Highlight green if user has it
-                    skills_req_html += f'<span style="background: #1b3320; border: 1px solid #4caf50; color: #4caf50; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-right: 4px; display: inline-block; margin-bottom: 4px;">{s} ✓</span>'
+                    skills_req_html += f'<span style="background: #1b3320; border: 1px solid #4caf50; color: #4caf50; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-right: 4px; display: inline-block; margin-bottom: 4px;">{format_skill_label(s)} ✓</span>'
                 else:
                     # Grey out if user doesn't have it
-                    skills_req_html += f'<span style="background: #222; border: 1px solid #444; color: #888; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-right: 4px; display: inline-block; margin-bottom: 4px;">{s}</span>'
-            
-            st.markdown(f"""
-            <div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; border-left: 4px solid {score_color}; transition: transform 0.2sease, box-shadow 0.2s ease;" class="hover-card">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
-                    <div style="font-weight: 600; font-size: 1.1rem; color: #fff;">{p.get('name', 'Project').title()}</div>
-                    <div style="background: {diff_color}22; color: {diff_color}; border: 1px solid {diff_color}; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">{p.get('difficulty', '')}</div>
-                </div>
-                <div style="color: #aaa; font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.5;">
-                    {p.get('description', '')}
-                </div>
-                <div>
-                    <div style="font-size: 0.75rem; color: #888; margin-bottom: 6px; font-weight: bold;">
-                        <span>MATCH SCORE: <span style="color: {score_color};">{int(score*100)}% ({match_text})</span></span>
+                    skills_req_html += f'<span style="background: #222; border: 1px solid #444; color: #888; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-right: 4px; display: inline-block; margin-bottom: 4px;">{format_skill_label(s)}</span>'
+
+            category_label = p.get("category", "").replace("_", " ").title()
+            matched_count = p.get("match_count", len(matched_set))
+            target_column = project_columns[idx % len(project_columns)]
+            with target_column:
+                st.markdown(f"""
+                <div style="background: #111; border: 1px solid #333; border-radius: 10px; padding: 1.05rem; margin-bottom: 1rem; border-left: 4px solid {score_color}; min-height: 230px;" class="hover-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.7rem;">
+                        <div>
+                            <div style="font-weight: 600; font-size: 1.05rem; color: #fff; margin-bottom: 0.35rem;">{p.get('name', 'Project').title()}</div>
+                            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                                <span style="background:#181818;border:1px solid #2e2e2e;color:#b8b8b8;padding:2px 8px;border-radius:999px;font-size:0.68rem;text-transform:uppercase;">{category_label}</span>
+                                <span style="background:#181818;border:1px solid #2e2e2e;color:#b8b8b8;padding:2px 8px;border-radius:999px;font-size:0.68rem;">{matched_count} skill match</span>
+                            </div>
+                        </div>
+                        <div style="background: {diff_color}22; color: {diff_color}; border: 1px solid {diff_color}; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; white-space: nowrap;">{p.get('difficulty', '')}</div>
+                    </div>
+                    <div style="color: #aaa; font-size: 0.9rem; margin-bottom: 0.9rem; line-height: 1.55;">
+                        {p.get('description', '')}
+                    </div>
+                    <div style="font-size: 0.78rem; color: #888; margin-bottom: 0.55rem; font-weight: bold;">
+                        Match score: <span style="color: {score_color};">{int(score*100)}% ({match_text})</span>
                     </div>
                     <div>{skills_req_html}</div>
                 </div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
 
 
     # ── Conclusion / Roadmap Card ─────────────────────────────────────────
@@ -688,6 +823,7 @@ def _render_explanation_accordion(explanation: str, recommendations: list) -> No
 
     if len(sections) > 1:
         # Successfully parsed numbered sections
+        skill_idx = 0
         for section in sections:
             section = section.strip()
             # Skip introductory text blocks
@@ -700,22 +836,51 @@ def _render_explanation_accordion(explanation: str, recommendations: list) -> No
             first_line = section.split('\n')[0]
             match = _re.match(r'\d+[\.\)]\s*(.+?)\s*[-–:—→]', first_line)
             if match:
-                skill_label = match.group(1).strip().title()
+                skill_label = format_skill_label(match.group(1).strip())
                 # Remove the "1. SkillName:" prefix from the body text
                 prefix_to_remove = match.group(0)
                 if section.startswith(prefix_to_remove):
                     section = section[len(prefix_to_remove):].strip()
             else:
-                skill_label = first_line[:60].strip()
+                skill_label = format_skill_label(first_line[:60].strip())
             with st.expander(f"📌 {skill_label}", expanded=False):
+                if skill_idx < len(recommendations):
+                    st.caption(_build_score_reason_text(recommendations[skill_idx]))
                 st.markdown(section, unsafe_allow_html=True)
+            skill_idx += 1
     else:
         # Fallback: render each recommendation as a separate expander
         paragraphs = [p.strip() for p in explanation.split('\n\n') if p.strip()]
         for i, para in enumerate(paragraphs):
-            skill_name = recommendations[i]["skill"].title() if i < len(recommendations) else f"Skill {i+1}"
+            skill_name = format_skill_label(recommendations[i]["skill"]) if i < len(recommendations) else f"Skill {i+1}"
             with st.expander(f"📌 {skill_name}", expanded=False):
+                if i < len(recommendations):
+                    st.caption(_build_score_reason_text(recommendations[i]))
                 st.markdown(para, unsafe_allow_html=True)
+
+
+def _build_score_reason_text(rec: dict) -> str:
+    """Explain the missing-score in user-facing language."""
+    score = int(rec.get("final_score", 0))
+    if score >= 60:
+        return (
+            f"Skor {score}% menunjukkan bahwa skill ini termasuk kebutuhan yang cukup kuat "
+            "untuk role target dan layak diprioritaskan lebih awal."
+        )
+    if score >= 45:
+        return (
+            f"Skor {score}% menunjukkan bahwa skill ini cukup penting untuk memperkuat profil Anda, "
+            "meski masih ada beberapa skill yang lebih mendesak untuk didahulukan."
+        )
+    if score >= 30:
+        return (
+            f"Skor {score}% menunjukkan bahwa skill ini bersifat pendukung. Skill ini tetap berguna, "
+            "tetapi tidak perlu menjadi fokus pertama jika fondasi utama Anda belum lengkap."
+        )
+    return (
+        f"Skor {score}% menunjukkan bahwa skill ini lebih cocok dianggap sebagai pelengkap. "
+        "Fokus utama sebaiknya tetap pada skill dengan prioritas yang lebih tinggi."
+    )
 
 
 def render_trend_chart(trend: dict, idx: int):
@@ -755,7 +920,7 @@ def render_trend_chart(trend: dict, idx: int):
 
     fig.update_layout(
         title=dict(
-            text=f"{skill.title()}",
+            text=f"{format_skill_label(skill)}<br><sup>Historical data through {hist_months[-1] if hist_months else pred_month}, forecast for {pred_month}</sup>",
             font=dict(family="Space Mono, monospace", size=14, color="#e8e8e0"),
         ),
         plot_bgcolor="#161616",
