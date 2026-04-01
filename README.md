@@ -221,4 +221,20 @@ Health check — returns model loading status.
 
 ---
 
+## 🗄️ Datasets
+
+- [Data Analyst Job Postings (Pay, Skills, Benefits)](https://www.kaggle.com/datasets/lukebarousse/data-analyst-job-postings-google-search) 
+- [Data Analyst Job Roles in Canada](https://www.kaggle.com/datasets/amanbhattarai695/data-analyst-job-roles-in-canada)
+- [Data Science Job Postings & Skills (LinkedIn)](https://www.kaggle.com/datasets/asaniczka/data-science-job-postings-and-skills) 
+- [Internshala Jobs Dataset](https://www.kaggle.com/datasets/dev122/internshala-jobs-dataset)
+- [Job Descriptions 2025 – Tech & Non-Tech Roles](https://www.kaggle.com/datasets/adityarajsrv/job-descriptions-2025-tech-and-non-tech-roles) 
+- [LinkedIn Data Jobs Dataset](https://www.kaggle.com/datasets/joykimaiyo18/linkedin-data-jobs-dataset)
+- [Resume Dataset](https://www.kaggle.com/datasets/jithinjagadeesh/resume-dataset)
+- [Skill-Based Task Assignment](https://www.kaggle.com/datasets/umerfarooq09/skill-based-task-assignment) 
+- [stackoverflow survey](https://www.kaggle.com/datasets/jhotika/stackoverflow-survey)
+- [Future job & skills demand 2025](https://www.kaggle.com/datasets/ahsanneural/future-jobs-and-skills-demand-2025)
+- [Scraping Adzuna API (Data Live April 2026)](https://api.adzuna.com/v1/api)
+
+---
+
 *Group DB10-G002, Dicoding Bootcamp Batch 10 : Artificial Inteligence.*
