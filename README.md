@@ -1,5 +1,5 @@
 ﻿---
-title: GapSense API
+Title: GapSense API
 emoji: 🎯
 colorFrom: blue
 colorTo: indigo
