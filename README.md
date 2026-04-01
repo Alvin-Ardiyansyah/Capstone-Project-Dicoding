@@ -87,7 +87,7 @@ Contains the core machine learning models, API, and datasets. Deployed to **Hugg
 | `tensorflow` / `keras` | Time-series demand forecasting |
 | `groq` | LLM API client (LLaMA 3.3 70B) |
 | `pandas` + `scikit-learn` | Data manipulation & cosine similarity |
-| `arima` | Trend prediction using autoregressive and moving average components |
+| `arima` | Time series forecasting for skill trend prediction |
 
 ### Frontend (`Capstone-Frontend/requirements.txt`)
 | Package | Purpose |
