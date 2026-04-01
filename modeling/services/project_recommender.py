@@ -1,107 +1,70 @@
 import difflib
 
-projects = [
-    # DATA ANALYTICS
-    {"name":"Sales Analytics Dashboard","category":"data analytics","skills":["sql","python","pandas","data visualization","powerbi"],"difficulty":"beginner","impact":"high","description":"Analyze company sales data and build an interactive dashboard."},
-    {"name":"Customer Segmentation Analysis","category":"data analytics","skills":["python","pandas","clustering","data visualization"],"difficulty":"intermediate","impact":"high","description":"Segment customers using clustering algorithms."},
-    {"name":"Marketing Campaign Performance Analysis","category":"data analytics","skills":["sql","python","statistics","data visualization"],"difficulty":"intermediate","impact":"high","description":"Analyze marketing campaign performance and ROI."},
-    {"name":"Website Traffic Analytics","category":"data analytics","skills":["python","pandas","data visualization"],"difficulty":"beginner","impact":"medium","description":"Analyze website traffic data to understand user behavior."},
-    
-    # DATA SCIENCE
-    {"name":"Customer Churn Prediction","category":"data science","skills":["python","machine learning","pandas","scikit-learn"],"difficulty":"intermediate","impact":"high","description":"Predict customers likely to leave a service."},
-    {"name":"Fraud Detection System","category":"data science","skills":["python","machine learning","anomaly detection"],"difficulty":"advanced","impact":"high","description":"Detect fraudulent transactions using ML."},
-    {"name":"Credit Risk Prediction","category":"data science","skills":["python","machine learning","statistics"],"difficulty":"advanced","impact":"high","description":"Predict credit risk for loan approval."},
-    {"name":"Recommendation System","category":"data science","skills":["python","machine learning","recommender system"],"difficulty":"advanced","impact":"high","description":"Build a collaborative filtering recommendation engine."},
-    
-    # MACHINE LEARNING / AI
-    {"name":"Image Classification CNN","category":"machine learning","skills":["python","deep learning","pytorch","cnn"],"difficulty":"advanced","impact":"high","description":"Build CNN models to classify images."},
-    {"name":"Object Detection System","category":"machine learning","skills":["python","computer vision","deep learning"],"difficulty":"advanced","impact":"high","description":"Detect objects in images using YOLO."},
-    {"name":"Sentiment Analysis NLP","category":"machine learning","skills":["python","nlp","machine learning"],"difficulty":"intermediate","impact":"high","description":"Analyze sentiment from social media data."},
-    {"name":"AI Chatbot with LLM","category":"ai","skills":["python","nlp","llm"],"difficulty":"intermediate","impact":"high","description":"Build an AI chatbot using LLM."},
-    {"name":"RAG Document Search System","category":"ai","skills":["python","rag","vector database"],"difficulty":"advanced","impact":"high","description":"Build a retrieval augmented generation system."},
-    
-    # BACKEND DEVELOPMENT
-    {"name":"REST API for E-commerce","category":"backend","skills":["python","fastapi","api","database"],"difficulty":"intermediate","impact":"high","description":"Build a REST API for an e-commerce platform."},
-    {"name":"Authentication System","category":"backend","skills":["python","jwt","api","security"],"difficulty":"intermediate","impact":"high","description":"Implement authentication and authorization system."},
-    {"name":"Microservices Architecture Demo","category":"backend","skills":["docker","api","microservices"],"difficulty":"advanced","impact":"high","description":"Build microservices-based backend system."},
-    
-    # FRONTEND DEVELOPMENT
-    {"name":"Interactive Data Dashboard","category":"frontend","skills":["javascript","react","data visualization"],"difficulty":"intermediate","impact":"high","description":"Create interactive dashboards using React."},
-    {"name":"Personal Portfolio Website","category":"frontend","skills":["html","css","javascript"],"difficulty":"beginner","impact":"medium","description":"Build a personal developer portfolio website."},
-    {"name":"Task Management App UI","category":"frontend","skills":["react","ui design","javascript"],"difficulty":"intermediate","impact":"high","description":"Build a task management application interface."},
-    
-    # FULLSTACK DEVELOPMENT
-    {"name":"Fullstack Blog Platform","category":"fullstack","skills":["react","nodejs","database","api"],"difficulty":"intermediate","impact":"high","description":"Build a fullstack blogging platform."},
-    {"name":"E-commerce Website","category":"fullstack","skills":["react","nodejs","database"],"difficulty":"advanced","impact":"high","description":"Build an e-commerce website with shopping cart."},
-    
-    # DEVOPS
-    {"name":"CI/CD Pipeline Project","category":"devops","skills":["docker","github actions","ci/cd"],"difficulty":"advanced","impact":"high","description":"Build automated CI/CD pipeline."},
-    {"name":"Dockerized Web Application","category":"devops","skills":["docker","deployment"],"difficulty":"intermediate","impact":"high","description":"Containerize web applications using Docker."},
-    
-    # CLOUD
-    {"name":"Deploy ML Model on Cloud","category":"cloud","skills":["aws","mlops","deployment"],"difficulty":"advanced","impact":"high","description":"Deploy machine learning models on AWS."},
-    {"name":"Serverless API","category":"cloud","skills":["aws","serverless","api"],"difficulty":"intermediate","impact":"high","description":"Build serverless backend APIs."},
-    
-    # CYBERSECURITY
-    {"name":"Password Strength Analyzer","category":"cybersecurity","skills":["python","security"],"difficulty":"beginner","impact":"medium","description":"Build a tool to analyze password strength."},
-    {"name":"Network Intrusion Detection","category":"cybersecurity","skills":["python","machine learning","network security"],"difficulty":"advanced","impact":"high","description":"Detect network intrusion using ML."},
-    
-    # MOBILE DEVELOPMENT
-    {"name":"To-do List Mobile App","category":"mobile","skills":["flutter","mobile development"],"difficulty":"beginner","impact":"medium","description":"Build a simple to-do list mobile application."},
-    {"name":"Fitness Tracking App","category":"mobile","skills":["flutter","mobile ui"],"difficulty":"intermediate","impact":"high","description":"Build a fitness tracking mobile application."},
-    
-    # JAVA DEVELOPMENT
-    {"name":"Spring Boot REST API","category":"backend","skills":["java","spring boot","api","database"],"difficulty":"intermediate","impact":"high","description":"Build a REST API using Java Spring Boot."},
-    {"name":"Java Banking System","category":"backend","skills":["java","oop","database"],"difficulty":"beginner","impact":"medium","description":"Build a simple banking management system in Java."},
-    {"name":"Distributed Microservices with Spring","category":"backend","skills":["java","spring boot","microservices","docker"],"difficulty":"advanced","impact":"high","description":"Build distributed microservices architecture using Spring."},
-    
-    # KOTLIN DEVELOPMENT
-    {"name":"Android Notes App","category":"mobile","skills":["kotlin","android","mobile development"],"difficulty":"beginner","impact":"medium","description":"Build a simple Android notes application."},
-    {"name":"Kotlin Weather App","category":"mobile","skills":["kotlin","android","api"],"difficulty":"intermediate","impact":"high","description":"Create a weather forecast Android application."},
-    {"name":"Kotlin Chat Application","category":"mobile","skills":["kotlin","android","firebase"],"difficulty":"advanced","impact":"high","description":"Build real-time chat application using Kotlin."},
-    
-    # C++ DEVELOPMENT
-    {"name":"File Compression Tool","category":"systems programming","skills":["c++","algorithms","data structures"],"difficulty":"advanced","impact":"high","description":"Build a file compression tool using Huffman coding."},
-    {"name":"2D Game Engine Prototype","category":"game development","skills":["c++","graphics","game development"],"difficulty":"advanced","impact":"high","description":"Build a simple 2D game engine in C++."},
-    {"name":"Command Line File Manager","category":"systems programming","skills":["c++","filesystem","cli"],"difficulty":"intermediate","impact":"medium","description":"Build a command line file manager."},
-    
-    # C# / .NET DEVELOPMENT
-    {"name":"ASP.NET Web API","category":"backend","skills":["c#",".net","api","database"],"difficulty":"intermediate","impact":"high","description":"Build a REST API using ASP.NET."},
-    {"name":"Inventory Management System","category":"backend","skills":["c#",".net","database"],"difficulty":"beginner","impact":"medium","description":"Build an inventory management system."},
-    {"name":"Real-time Chat App with SignalR","category":"backend","skills":["c#",".net","signalr"],"difficulty":"advanced","impact":"high","description":"Build a real-time chat application."},
-    
-    # GO (GOLANG)
-    {"name":"High Performance REST API","category":"backend","skills":["go","api","database"],"difficulty":"intermediate","impact":"high","description":"Build a high performance REST API using Go."},
-    {"name":"Concurrent Web Crawler","category":"backend","skills":["go","concurrency","web scraping"],"difficulty":"advanced","impact":"high","description":"Build a multi-threaded web crawler."},
-    {"name":"CLI DevOps Tool","category":"devops","skills":["go","cli","devops"],"difficulty":"intermediate","impact":"medium","description":"Build a CLI tool for DevOps automation."},
-    
-    # RUST
-    {"name":"High Performance Web Server","category":"backend","skills":["rust","systems programming"],"difficulty":"advanced","impact":"high","description":"Build a high performance web server in Rust."},
-    {"name":"Memory Safe File Processor","category":"systems programming","skills":["rust","file processing"],"difficulty":"intermediate","impact":"medium","description":"Build a memory-safe file processing tool."},
-    
-    # PHP
-    {"name":"Laravel Blog Platform","category":"backend","skills":["php","laravel","database"],"difficulty":"intermediate","impact":"high","description":"Build a blog platform using Laravel."},
-    {"name":"PHP Authentication System","category":"backend","skills":["php","authentication","database"],"difficulty":"beginner","impact":"medium","description":"Build login and authentication system."},
-    
-    # TYPESCRIPT
-    {"name":"TypeScript Web App","category":"frontend","skills":["typescript","javascript","web development"],"difficulty":"beginner","impact":"medium","description":"Build a web application using TypeScript."},
-    {"name":"React TypeScript Dashboard","category":"frontend","skills":["typescript","react","dashboard"],"difficulty":"intermediate","impact":"high","description":"Build a scalable dashboard with React and TypeScript."},
-    
-    # SWIFT (iOS)
-    {"name":"iOS Todo App","category":"mobile","skills":["swift","ios","mobile development"],"difficulty":"beginner","impact":"medium","description":"Build a simple iOS to-do list app."},
-    {"name":"iOS Health Tracker","category":"mobile","skills":["swift","ios","healthkit"],"difficulty":"advanced","impact":"high","description":"Build a health tracking application."},
-    
-    # GAME DEVELOPMENT
-    {"name":"Unity 2D Platformer Game","category":"game development","skills":["unity","c#","game development"],"difficulty":"intermediate","impact":"high","description":"Build a 2D platformer game using Unity."},
-    {"name":"Multiplayer Online Game Prototype","category":"game development","skills":["unity","networking","c#"],"difficulty":"advanced","impact":"high","description":"Build a multiplayer game prototype."}
+
+PROJECTS = [
+    # DATA ANALYST / ANALYTICS
+    {"name": "Sales Analytics Dashboard", "category": "data analytics", "roles": ["data analyst"], "skills": ["sql", "python", "pandas", "data visualization", "powerbi"], "difficulty": "beginner", "impact": "high", "description": "Analyze sales data and present business insights in an interactive dashboard."},
+    {"name": "Customer Segmentation Analysis", "category": "data analytics", "roles": ["data analyst"], "skills": ["python", "pandas", "clustering", "data visualization"], "difficulty": "intermediate", "impact": "high", "description": "Segment customers and explain which groups deserve the highest business focus."},
+    {"name": "Marketing Campaign Performance Analysis", "category": "data analytics", "roles": ["data analyst"], "skills": ["sql", "python", "statistics", "data visualization"], "difficulty": "intermediate", "impact": "high", "description": "Evaluate campaign performance and show which channels produce the best ROI."},
+    {"name": "Website Traffic Analytics", "category": "data analytics", "roles": ["data analyst"], "skills": ["python", "pandas", "data visualization"], "difficulty": "beginner", "impact": "medium", "description": "Analyze traffic patterns and user behavior from website data."},
+    {"name": "Executive KPI Dashboard", "category": "data analytics", "roles": ["data analyst"], "skills": ["sql", "excel", "tableau", "business intelligence"], "difficulty": "intermediate", "impact": "high", "description": "Build an executive dashboard that summarizes core business KPIs."},
+    {"name": "Forecasting Demand Report", "category": "data analytics", "roles": ["data analyst"], "skills": ["python", "excel", "statistics", "data visualization"], "difficulty": "intermediate", "impact": "high", "description": "Create a forecasting report to estimate future demand trends."},
+    {"name": "Operations Performance Dashboard", "category": "data analytics", "roles": ["data analyst"], "skills": ["sql", "powerbi", "excel", "data visualization"], "difficulty": "beginner", "impact": "medium", "description": "Track operational bottlenecks and highlight improvement opportunities."},
+    {"name": "Retention Cohort Analysis", "category": "data analytics", "roles": ["data analyst"], "skills": ["sql", "python", "pandas", "statistics"], "difficulty": "intermediate", "impact": "high", "description": "Analyze user retention patterns and identify drop-off stages."},
+
+    # DATA SCIENCE / ML
+    {"name": "Customer Churn Prediction", "category": "data science", "roles": ["data analyst"], "skills": ["python", "machine learning", "pandas", "scikit-learn"], "difficulty": "intermediate", "impact": "high", "description": "Build a model to predict which customers are at risk of leaving."},
+    {"name": "Fraud Detection System", "category": "data science", "roles": ["data analyst"], "skills": ["python", "machine learning", "anomaly detection"], "difficulty": "advanced", "impact": "high", "description": "Detect suspicious transactions using anomaly detection techniques."},
+    {"name": "Recommendation System", "category": "data science", "roles": ["data analyst", "backend"], "skills": ["python", "machine learning", "recommender system"], "difficulty": "advanced", "impact": "high", "description": "Build a recommendation engine for products or content."},
+
+    # BACKEND
+    {"name": "REST API for E-commerce", "category": "backend", "roles": ["backend"], "skills": ["python", "fastapi", "api", "database"], "difficulty": "intermediate", "impact": "high", "description": "Design a production-style REST API for an e-commerce platform."},
+    {"name": "Authentication System", "category": "backend", "roles": ["backend"], "skills": ["python", "jwt", "api", "security"], "difficulty": "intermediate", "impact": "high", "description": "Implement authentication, authorization, and secure session handling."},
+    {"name": "Microservices Architecture Demo", "category": "backend", "roles": ["backend"], "skills": ["docker", "api", "microservices"], "difficulty": "advanced", "impact": "high", "description": "Build a small microservices system with service-to-service communication."},
+    {"name": "Inventory Management API", "category": "backend", "roles": ["backend"], "skills": ["node.js", "sql", "api", "docker"], "difficulty": "intermediate", "impact": "high", "description": "Build an inventory backend with CRUD, validation, and deployment-ready structure."},
+    {"name": "Task Queue Notification Service", "category": "backend", "roles": ["backend"], "skills": ["node.js", "redis", "api", "docker"], "difficulty": "advanced", "impact": "high", "description": "Build a background job service for notifications and async workloads."},
+    {"name": "Payment Service Sandbox", "category": "backend", "roles": ["backend"], "skills": ["node.js", "security", "api", "sql"], "difficulty": "advanced", "impact": "high", "description": "Simulate a payment service with logging, validation, and transaction flow."},
+    {"name": "Spring Boot REST API", "category": "backend", "roles": ["backend"], "skills": ["java", "spring boot", "api", "database"], "difficulty": "intermediate", "impact": "high", "description": "Build a robust REST API using Java Spring Boot."},
+    {"name": "Java Banking System", "category": "backend", "roles": ["backend"], "skills": ["java", "oop", "database"], "difficulty": "beginner", "impact": "medium", "description": "Create a simple banking management system with core business logic."},
+    {"name": "Distributed Microservices with Spring", "category": "backend", "roles": ["backend"], "skills": ["java", "spring boot", "microservices", "docker"], "difficulty": "advanced", "impact": "high", "description": "Build distributed services using Spring and containerized deployment."},
+    {"name": "ASP.NET Web API", "category": "backend", "roles": ["backend"], "skills": ["c#", ".net", "api", "database"], "difficulty": "intermediate", "impact": "high", "description": "Build a REST API with ASP.NET and structured data access."},
+    {"name": "High Performance REST API", "category": "backend", "roles": ["backend"], "skills": ["go", "api", "database"], "difficulty": "intermediate", "impact": "high", "description": "Create a high-performance API service using Go."},
+    {"name": "Laravel Blog Platform", "category": "backend", "roles": ["backend"], "skills": ["php", "laravel", "database"], "difficulty": "intermediate", "impact": "high", "description": "Build a blogging platform with Laravel and database integration."},
+    {"name": "Backend Log Monitoring Tool", "category": "backend", "roles": ["backend"], "skills": ["python", "bash", "docker", "monitoring"], "difficulty": "intermediate", "impact": "medium", "description": "Create a tool to collect and inspect backend logs for debugging and monitoring."},
+
+    # FRONTEND
+    {"name": "Personal Portfolio Website", "category": "frontend", "roles": ["frontend"], "skills": ["html", "css", "javascript"], "difficulty": "beginner", "impact": "medium", "description": "Build a polished personal portfolio website to present projects and skills."},
+    {"name": "Interactive Data Dashboard", "category": "frontend", "roles": ["frontend"], "skills": ["javascript", "react", "data visualization"], "difficulty": "intermediate", "impact": "high", "description": "Create an interactive dashboard with charts and rich front-end behavior."},
+    {"name": "Task Management App UI", "category": "frontend", "roles": ["frontend"], "skills": ["react", "ui design", "javascript"], "difficulty": "intermediate", "impact": "high", "description": "Design and build a usable task management interface."},
+    {"name": "Landing Page Optimization Project", "category": "frontend", "roles": ["frontend"], "skills": ["html", "css", "javascript", "webpack"], "difficulty": "beginner", "impact": "medium", "description": "Build and optimize a fast marketing landing page."},
+    {"name": "React TypeScript Dashboard", "category": "frontend", "roles": ["frontend"], "skills": ["typescript", "react", "dashboard"], "difficulty": "intermediate", "impact": "high", "description": "Build a scalable dashboard using React and TypeScript."},
+    {"name": "Vue Commerce Frontend", "category": "frontend", "roles": ["frontend"], "skills": ["vue", "javascript", "css", "api"], "difficulty": "intermediate", "impact": "high", "description": "Create a responsive storefront frontend powered by API data."},
+    {"name": "Design System Starter", "category": "frontend", "roles": ["frontend"], "skills": ["typescript", "css", "storybook", "react"], "difficulty": "advanced", "impact": "high", "description": "Build a reusable design system with documented UI components."},
+    {"name": "Frontend Performance Audit", "category": "frontend", "roles": ["frontend"], "skills": ["javascript", "webpack", "vite", "performance"], "difficulty": "intermediate", "impact": "medium", "description": "Improve loading performance and bundle efficiency on a real-style frontend app."},
+
+    # FULLSTACK / DEVOPS / CLOUD
+    {"name": "Fullstack Blog Platform", "category": "fullstack", "roles": ["frontend", "backend"], "skills": ["react", "nodejs", "database", "api"], "difficulty": "intermediate", "impact": "high", "description": "Build a fullstack blog platform with content workflows."},
+    {"name": "E-commerce Website", "category": "fullstack", "roles": ["frontend", "backend"], "skills": ["react", "nodejs", "database"], "difficulty": "advanced", "impact": "high", "description": "Build an e-commerce application with product, cart, and checkout flows."},
+    {"name": "CI/CD Pipeline Project", "category": "devops", "roles": ["backend"], "skills": ["docker", "github actions", "ci/cd"], "difficulty": "advanced", "impact": "high", "description": "Automate testing and deployment with a CI/CD pipeline."},
+    {"name": "Dockerized Web Application", "category": "devops", "roles": ["backend", "frontend"], "skills": ["docker", "deployment"], "difficulty": "intermediate", "impact": "high", "description": "Containerize a web application and prepare it for deployment."},
+    {"name": "Serverless API", "category": "cloud", "roles": ["backend"], "skills": ["aws", "serverless", "api"], "difficulty": "intermediate", "impact": "high", "description": "Build a serverless API with scalable cloud infrastructure."},
 ]
+
+
+ROLE_CATEGORY_BOOSTS = {
+    "frontend": {"frontend": 0.25, "fullstack": 0.1, "devops": 0.05},
+    "backend": {"backend": 0.25, "fullstack": 0.1, "devops": 0.08, "cloud": 0.08},
+    "data analyst": {"data analytics": 0.25, "data science": 0.12},
+}
+
 
 def get_all_skills():
     skill_set = set()
-    for project in projects:
+    for project in PROJECTS:
         for skill in project["skills"]:
             skill_set.add(skill.lower())
     return list(skill_set)
+
 
 def correct_skill(skill, skill_list):
     skill = skill.lower().strip()
@@ -110,36 +73,55 @@ def correct_skill(skill, skill_list):
         return match[0]
     return skill
 
+
 def normalize_user_skills(user_skills):
     all_skills = get_all_skills()
     corrected = []
     for skill in user_skills:
-        fixed = correct_skill(skill, all_skills)
-        corrected.append(fixed)
+        corrected.append(correct_skill(skill, all_skills))
     return corrected
 
-def recommend_projects(user_skills, limit=3):
-    """
-    Given a list of user skills, return the top matching projects.
-    Returns highly curated top generic projects (default limit=3 to fit nicely in UI layout).
-    """
+
+def recommend_projects(user_skills, target_role=None, limit=6):
+    """Return portfolio project references ranked by skill overlap and role fit."""
     user_skills_normalized = normalize_user_skills(user_skills)
+    user_skill_set = set(user_skills_normalized)
+    role_key = (target_role or "").lower().strip()
+    category_boosts = ROLE_CATEGORY_BOOSTS.get(role_key, {})
+
     results = []
-    for project in projects:
+    for project in PROJECTS:
         project_skills = [s.lower() for s in project["skills"]]
-        match = len(set(user_skills_normalized) & set(project_skills))
-        score = match / len(project_skills)
-        if score > 0:
-            results.append({
+        project_skill_set = set(project_skills)
+        matched = sorted(user_skill_set & project_skill_set)
+        match_count = len(matched)
+        if match_count == 0:
+            continue
+
+        base_score = match_count / len(project_skills)
+        role_bonus = category_boosts.get(project["category"], 0.0)
+        impact_bonus = 0.05 if project.get("impact") == "high" else 0.0
+        score = min(1.0, round(base_score + role_bonus + impact_bonus, 2))
+
+        results.append(
+            {
                 "name": project["name"],
                 "category": project["category"],
                 "difficulty": project["difficulty"],
                 "description": project["description"],
-                "score": round(score, 2),
-                "skills_matched": list(set(user_skills_normalized) & set(project_skills)),
-                "skills_required": project_skills
-            })
-            
-    # Sort projects by Highest Match Score first.
-    results.sort(key=lambda x: x["score"], reverse=True)
+                "score": score,
+                "match_count": match_count,
+                "skills_matched": matched,
+                "skills_required": project_skills,
+            }
+        )
+
+    results.sort(
+        key=lambda item: (
+            item["score"],
+            item["match_count"],
+            len(item["skills_matched"]),
+        ),
+        reverse=True,
+    )
     return results[:limit]

@@ -5,11 +5,11 @@ berdasarkan data historis job postings.
 """
 
 import os
+import pickle
 import numpy as np
 import pandas as pd
 from rapidfuzz import process
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.models import load_model
 
 
 class SkillTrendPredictor:
@@ -21,7 +21,8 @@ class SkillTrendPredictor:
             model_path: Path ke file model Keras (.keras)
             dataset_path: Path ke file CSV dataset skill trend
         """
-        self.model = load_model(model_path)
+        self.model = self._load_model(model_path)
+        self.model_path = model_path
         self.scaler = MinMaxScaler()
 
         # Load & preprocess dataset
@@ -62,6 +63,18 @@ class SkillTrendPredictor:
 
         # Skill list for fuzzy matching
         self.skills = self.pivot.columns.tolist()
+
+    @staticmethod
+    def _load_model(model_path: str):
+        """Load either a legacy Keras model or an sklearn pickle model."""
+        suffix = os.path.splitext(model_path)[1].lower()
+        if suffix == ".pkl":
+            with open(model_path, "rb") as handle:
+                return pickle.load(handle)
+
+        from tensorflow.keras.models import load_model
+
+        return load_model(model_path)
 
     @staticmethod
     def _clean_skill(skill: str) -> str:
@@ -111,7 +124,13 @@ class SkillTrendPredictor:
         """
         data_scaled = self.scaler.transform(self.pivot.values)
         last_month_scaled = data_scaled[-1].reshape(1, -1)
-        prediction_scaled = self.model.predict(last_month_scaled, verbose=0)
+        if hasattr(self.model, "predict"):
+            if self.model_path.lower().endswith(".pkl"):
+                prediction_scaled = self.model.predict(last_month_scaled)
+            else:
+                prediction_scaled = self.model.predict(last_month_scaled, verbose=0)
+        else:
+            raise ValueError("Loaded trend model does not support predict().")
         prediction = self.scaler.inverse_transform(prediction_scaled).flatten()
 
         result = {}

@@ -112,6 +112,7 @@ Berikut adalah daftar skill gap (skill yang BELUM dimiliki user dan PERLU dipela
 INSTRUKSI KETAT:
 1. Untuk SETIAP skill gap di atas, tulis SATU paragraf utuh (3-5 kalimat) yang mencakup:
    - Mengapa skill ini penting untuk role "{target_role}".
+   - Jelaskan secara singkat apa arti persentase skor skill tersebut bagi user dalam bahasa non-teknis. Contoh arah penjelasan: apakah skill ini termasuk kebutuhan inti yang sebaiknya diprioritaskan lebih dulu, kebutuhan pendukung yang tetap berguna, atau pelengkap yang bisa dipelajari setelah fondasi utama lebih kuat.
    - Kritis & Kontekstual (Kondisi Industri Tahun 2026): Jika skill tersebut sudah usang/legacy, sebutkan bahwa skill tersebut sudah mulai digantikan oleh teknologi modern dan sarankan apakah user perlu mempelajarinya dalam-dalam atau hanya sekadar tahu. Jika skill tersebut adalah standar industri modern, tekankan relevansinya.
    - Langkah praktis untuk mulai mempelajarinya SESUAI konteks profil user (pengalaman, latar belakang, dan timeline mereka).
    PENTING: DILARANG menggunakan bullet points (titik/strip). Gabungkan semuanya menjadi satu paragraf yang naratif dan profesional.
@@ -150,6 +151,7 @@ def generate_conclusion(
     target_role: str,
     result_in_text: str,
     score: int,
+    priority_skills: Optional[List[str]] = None,
     user_context: Optional[Dict[str, str]] = None,
 ) -> str:
     """
@@ -160,6 +162,7 @@ def generate_conclusion(
         target_role: The job role the user is aiming for.
         result_in_text: Formatted string of recommended missing skills.
         score: The user's current skill match percentage.
+        priority_skills: Ordered top-priority skills from the final backend ranking.
         user_context: Optional dict for personalizing the conclusion.
 
     Returns:
@@ -173,14 +176,18 @@ def generate_conclusion(
         "Langsung tuliskan satu hingga dua paragraf narasi secara natural."
     )
 
+    priority_line = ", ".join(priority_skills or [])
+
     user_prompt = f"""Berdasarkan analisis skill gap untuk role "{target_role}":
 - Skor kesesuaian user saat ini: {score}%
 - Skill yang perlu dipelajari:
 {result_in_text}
+- Tiga prioritas utama hasil ranking final backend: {priority_line}
 {context_snippet}
 
 Tuliskan sebuah narasi singkat (3-5 kalimat) seolah-olah Anda berbicara langsung kepada pengguna di industri teknologi tahun 2026.
 Rangkum posisi pengguna saat ini, sebutkan 3 skill utama yang perlu difokuskan, dan estimasi waktu realistis untuk menjadi kompeten BERDASARKAN profil user di atas (pengalaman, latar belakang belajar, dan timeline target mereka).
+WAJIB gunakan tiga skill prioritas utama hasil ranking final backend di atas sebagai fokus roadmap. Jangan mengganti prioritas itu dengan skill lain.
 PENTING: Jangan prioritaskan skill usang/legacy (seperti jQuery) sebagai fokus utama pembelajaran, melainkan arahkan user untuk memprioritaskan skill modern yang lebih relevan untuk masa depan.
 JANGAN menggunakan numbering. JANGAN memberikan judul atau header.
 Gunakan Bahasa Indonesia yang profesional dan memotivasi."""

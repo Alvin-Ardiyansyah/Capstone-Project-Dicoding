@@ -28,9 +28,14 @@ from groq import Groq
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 
-from services import Normalize_Input, generate_explanation,GapSenseAnalyzer, generate_conclusion
-from services.trend_model import SkillTrendPredictor
-from services.project_recommender import recommend_projects
+try:
+    from .services import Normalize_Input, generate_explanation, GapSenseAnalyzer, generate_conclusion
+    from .services.trend_model import SkillTrendPredictor
+    from .services.project_recommender import recommend_projects
+except ImportError:
+    from services import Normalize_Input, generate_explanation, GapSenseAnalyzer, generate_conclusion
+    from services.trend_model import SkillTrendPredictor
+    from services.project_recommender import recommend_projects
 
 # ─── Load environment variables ───────────────────────────────────────────────
 load_dotenv()
@@ -54,26 +59,56 @@ class AppResources:
 resources = AppResources()
 
 
+def resolve_artifact_path(base_dir: str, env_name: str, default_relative: str) -> str:
+    """Resolve an artifact path from env or default relative location."""
+    configured = os.environ.get(env_name)
+    if configured:
+        return configured if os.path.isabs(configured) else os.path.join(base_dir, configured)
+    return os.path.join(base_dir, default_relative)
+
+
+def env_flag(name: str, default: bool = False) -> bool:
+    """Parse a boolean-like environment variable."""
+    raw_value = os.environ.get(name)
+    if raw_value is None:
+        return default
+    return raw_value.strip().lower() in {"1", "true", "yes", "on"}
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Load ML models and resources at startup."""
     # Load embedding model
-    resources.embed_model = SentenceTransformer("all-MiniLM-L6-v2")
+    embed_model_name = os.environ.get("EMBED_MODEL_NAME", "all-MiniLM-L6-v2")
+    embed_model_local_only = env_flag("EMBED_MODEL_LOCAL_ONLY", default=False)
+    resources.embed_model = SentenceTransformer(
+        embed_model_name,
+        local_files_only=embed_model_local_only,
+    )
 
     # Load skill vocab & embeddings
     base_dir = os.path.dirname(os.path.abspath(__file__))
     preprocessing_dir = os.path.join(base_dir, "..", "Preprocessing data")
+    vocab_path = resolve_artifact_path(base_dir, "SKILL_VOCAB_PATH", os.path.join("..", "Preprocessing data", "skill_vocab.pkl"))
+    embeddings_path = resolve_artifact_path(
+        base_dir,
+        "SKILL_EMBEDDINGS_PATH",
+        os.path.join("..", "Preprocessing data", "skill_embeddings.pkl"),
+    )
+    role_skill_freq_path = resolve_artifact_path(
+        base_dir,
+        "ROLE_SKILL_FREQ_PATH",
+        os.path.join("..", "Preprocessing data", "role_skill_freq.csv"),
+    )
 
-    with open(os.path.join(preprocessing_dir, "skill_vocab.pkl"), "rb") as f:
+    with open(vocab_path, "rb") as f:
         resources.all_skills = pickle.load(f)
 
-    with open(os.path.join(preprocessing_dir, "skill_embeddings.pkl"), "rb") as f:
+    with open(embeddings_path, "rb") as f:
         resources.skill_embeddings = pickle.load(f)
 
     # Load role-skill frequency data
-    resources.role_skill_freq = pd.read_csv(
-        os.path.join(preprocessing_dir, "role_skill_freq.csv")
-    )
+    resources.role_skill_freq = pd.read_csv(role_skill_freq_path)
     resources.role_skill_freq["importance"] = (
         resources.role_skill_freq.groupby("role")["count"]
         .transform(lambda x: x / x.max())
@@ -83,8 +118,16 @@ async def lifespan(app: FastAPI):
     resources.groq_client = Groq(api_key=GROQ_API_KEY)
 
     # Load trend predictor
-    model_path = os.path.join(base_dir, "data", "time_series_2.keras")
-    dataset_path = os.path.join(base_dir, "data", "skill_trend_dataset_2.csv")
+    model_path = resolve_artifact_path(
+        base_dir,
+        "TREND_MODEL_PATH",
+        os.path.join("..", "data", "time_series_combined.pkl"),
+    )
+    dataset_path = resolve_artifact_path(
+        base_dir,
+        "TREND_DATASET_PATH",
+        os.path.join("..", "data", "skill_trend_dataset_combined.csv"),
+    )
 
     if os.path.exists(model_path) and os.path.exists(dataset_path):
         resources.trend_predictor = SkillTrendPredictor(model_path, dataset_path)
@@ -227,6 +270,10 @@ async def analyze_gap_sense(request: GapSenseRequest):
             "learning_background": request.learning_background,
             "target_timeline": request.target_timeline,
         }
+        priority_skills = [
+            row.skill
+            for row in recommendations[:3]
+        ]
 
         # Generate AI explanation
         explanation = generate_explanation(
@@ -243,11 +290,12 @@ async def analyze_gap_sense(request: GapSenseRequest):
             request.role,
             gap_result,
             score,
+            priority_skills=priority_skills,
             user_context=user_context,
         )
 
         # Get project recommendations based on user's current skills
-        recommended_projects = recommend_projects(normalized_skills)
+        recommended_projects = recommend_projects(normalized_skills, request.role)
 
         return GapSenseResponse(
             role=request.role,
