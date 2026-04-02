@@ -1,3 +1,10 @@
+"""
+Portfolio Project Recommender.
+
+Provides content-based project recommendations by matching user skills
+against a curated catalog of portfolio projects across different roles
+and categories (frontend, backend, data analytics, DevOps, cloud).
+"""
 import difflib
 
 

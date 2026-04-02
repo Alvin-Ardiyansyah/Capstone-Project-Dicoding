@@ -1,3 +1,10 @@
+"""
+Input Normalization Module.
+
+Normalizes raw user-input skill strings into a clean, standardized list
+of canonical skill names. Handles alias mapping, combined skill splitting,
+soft skill filtering, typo correction, and noise removal.
+"""
 import re
 
 class Normalize_Input:
