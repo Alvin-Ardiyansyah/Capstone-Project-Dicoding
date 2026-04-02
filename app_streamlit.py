@@ -728,7 +728,7 @@ def results_page() -> None:
         elif recommendations:
             st.markdown("<br>", unsafe_allow_html=True)
             st.markdown(
-                '<div class="card-title">ðŸ“ˆ Skill Demand Trend</div>',
+                '<div class="card-title">📈 Skill Demand Trend</div>',
                 unsafe_allow_html=True,
             )
             st.caption("No role-relevant trend data available for the current top recommendations.")
