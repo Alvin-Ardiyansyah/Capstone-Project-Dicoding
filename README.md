@@ -1,4 +1,4 @@
-﻿---
+---
 Title: GapSense API
 emoji: 🎯
 colorFrom: blue
@@ -7,69 +7,101 @@ sdk: docker
 pinned: false
 ---
 
-# GapSense API
+# GapSense API — Backend
 
-FastAPI backend untuk analisis skill gap, forecasting tren skill, dan rekomendasi proyek portofolio pada project GapSense.
+> FastAPI backend powering skill gap analysis, skill demand forecasting,
+> and portfolio project recommendations for the GapSense platform.
 
-## Fitur Utama
+**Capstone Project DB10-G002** · Dicoding Bootcamp — Artificial Intelligence
 
-- Analisis skill gap berbasis semantic similarity
-- Forecasting tren skill dengan dataset gabungan sampai `2026-04`
-- AI explanation dan roadmap karier dengan Groq
-- Ranking recommendation yang lebih role-aware
-- Project recommendation yang lebih banyak dan relevan per role
+## Features
 
-## Runtime Default
+| Feature | Description |
+|---|---|
+| **Skill Gap Analysis** | Semantic similarity–based matching between user skills and role requirements |
+| **Skill Demand Trend** | Time-series forecasting with EWM-smoothed historical data and next-month prediction |
+| **AI Explanation** | Per-skill career consultation powered by Groq API (LLaMA 3.3 70B) |
+| **Career Roadmap** | Personalized conclusion and roadmap based on user profile |
+| **Project Recommender** | Content-based portfolio project suggestions matched to user skills |
 
-Backend default sekarang memakai artefak trend berikut:
+## Architecture
 
-- `modeling/data/skill_trend_dataset_combined.csv`
-- `modeling/data/time_series_combined.pkl`
+```
+Capstone-AI Model/
+├── Dockerfile                    # Docker config for Hugging Face Spaces
+├── requirements.txt              # Python dependencies
+├── modeling/
+│   ├── main.py                   # FastAPI application entry point
+│   ├── data/
+│   │   ├── skill_trend_dataset_combined.csv  # Augmented trend dataset
+│   │   └── time_series_combined.pkl          # Trained prediction model
+│   └── services/
+│       ├── __init__.py           # Service exports
+│       ├── model_gap.py          # Skill gap analyzer (cosine similarity)
+│       ├── norm_input.py         # Input normalization and alias mapping
+│       ├── explanation.py        # LLM explanation and conclusion generator
+│       ├── project_recommender.py # Portfolio project recommendation engine
+│       └── trend_model.py        # Skill trend predictor with EWM smoothing
+├── Preprocessing data/           # Jupyter notebooks and preprocessed artifacts
+│   ├── skill_vocab.pkl           # Canonical skill vocabulary
+│   ├── skill_embeddings.pkl      # Precomputed sentence embeddings
+│   └── role_skill_freq.csv       # Role–skill frequency matrix
+├── fitur_tambahan/               # Teammate's ARIMA experiments (reference)
+└── generate_trend_dataset.py     # Dataset generation script (reproducibility)
+```
 
-Backend tetap mendukung override via environment variable jika nanti dibutuhkan.
+## API Endpoints
 
-## Setup Lokal
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/health` | Health check and model status |
+| `POST` | `/api/gap-sense` | Analyze skill gap for a given role |
+| `POST` | `/api/skill-trend` | Get historical trend and forecast for skills |
 
-Install dependency:
+## Local Development
+
+### Prerequisites
+
+- Python 3.10+
+- A valid [Groq API key](https://console.groq.com/)
+
+### Setup
 
 ```bash
+# Install dependencies
 pip install -r requirements.txt
+
+# Create environment file
+echo "GROQ_API_KEY=your_key_here" > modeling/.env
 ```
 
-Buat file `.env` di folder `modeling/`:
-
-```env
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-## Menjalankan Backend
-
-Masuk ke folder `modeling`, lalu jalankan:
+### Run
 
 ```bash
+cd modeling
 python main.py
 ```
 
-Server aktif di:
+The server starts at `http://localhost:8000` with interactive docs at `/docs`.
 
-```text
-http://localhost:8000
-```
+## Deployment
 
-Swagger UI:
+This repository is deployed to **Hugging Face Spaces** via GitHub Actions.
+The `skill_gap_model` branch is the source of truth for deployment.
 
-```text
-http://localhost:8000/docs
-```
+### Environment Variables (Hugging Face Secrets)
 
-## Endpoint
+| Variable | Description |
+|---|---|
+| `GROQ_API_KEY` | API key for Groq LLM service |
 
-- `GET /api/health`
-- `POST /api/gap-sense`
-- `POST /api/skill-trend`
+## Technical Notes
 
-## Catatan
+- **Trend Dataset**: Generated using an Ornstein-Uhlenbeck process with trend-aware drift (NAIK/STABIL/TURUN), inspired by team ARIMA research in `fitur_tambahan/`.
+- **Prediction Model**: Ridge regression trained on MinMax-scaled monthly pivot data. Predictions are clamped to non-negative values.
+- **EWM Smoothing**: Exponential Weighted Moving Average (span=4) is applied to historical counts for smooth visualization.
+- **Input Normalization**: Supports 100+ aliases (e.g., `js` → `javascript`, `golang` → `go`, `power bi` → `power_bi`).
 
-- Input skill sudah lebih toleran untuk alias umum seperti `js`, `golang`, `power bi`, dan `data visualisation`
-- Runtime forecasting default sekarang menggunakan model `.pkl`
-- README ini tetap diperlukan karena repo ini menjadi source deploy untuk Hugging Face Space
+## License
+
+This project is part of the Dicoding Bootcamp Capstone Program (DB10-G002).

@@ -1,12 +1,21 @@
+# ── Core Framework ──
 fastapi==0.115.0
 uvicorn==0.30.0
+pydantic==2.8.0
+
+# ── ML & NLP ──
 sentence-transformers==3.0.0
 scikit-learn==1.5.0
 numpy==1.26.4
 pandas==2.2.0
-groq>=0.11.0
+rapidfuzz==3.9.0
+
+# ── Deep Learning (required for .keras model fallback) ──
 tensorflow>=2.16.1
 tf-keras
-rapidfuzz==3.9.0
+
+# ── LLM Integration ──
+groq>=0.11.0
+
+# ── Utilities ──
 python-dotenv==1.0.1
-pydantic==2.8.0

@@ -24,9 +24,17 @@ modeling/.env
 Preprocessing data/*.ipynb
 Preprocessing data/.ipynb_checkpoints/
 
-# Extra folders not needed for API
+# Reference / experiment files (not needed for API runtime)
 fitur_tambahan/
+generate_trend_dataset.py
+
+# Legacy model files (kept for reference, not needed at runtime)
+modeling/data/skill_trend_dataset_2.csv
+modeling/data/time_series_2.keras
 
 # OS files
 .DS_Store
 Thumbs.db
+
+# GitHub Actions
+.github/
