@@ -283,6 +283,31 @@ st.markdown("""
 
   /* ── Divider ── */
   hr { border-color: #222; }
+
+  /* ── Professional Footer Override ── */
+  #MainMenu {visibility: hidden;}
+  footer {visibility: hidden;}
+  header {visibility: hidden;}
+
+  .custom-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 13, 13, 0.9);
+    backdrop-filter: blur(4px);
+    border-top: 1px solid #1e1e1e;
+    color: #666;
+    text-align: center;
+    padding: 0.6rem 0;
+    font-size: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    z-index: 9999;
+  }
+  .custom-footer span.highlight {
+    color: #f0e040;
+    font-weight: 700;
+  }
 </style>
 """, unsafe_allow_html=True)
 
@@ -955,3 +980,10 @@ if st.session_state.page == "home":
     home_page()
 else:
     results_page()
+
+# ─── Inject Custom Professional Footer ───────────────────────────────────────
+st.markdown("""
+<div class="custom-footer">
+  Gap Sense Platform &bull; Developed by <span class="highlight">Capstone Team DB-10</span> (Dicoding)
+</div>
+""", unsafe_allow_html=True)
