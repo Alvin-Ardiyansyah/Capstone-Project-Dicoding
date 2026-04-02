@@ -984,6 +984,6 @@ else:
 # ─── Inject Custom Professional Footer ───────────────────────────────────────
 st.markdown("""
 <div class="custom-footer">
-  Gap Sense Platform &bull; Developed by <span class="highlight">Capstone Team DB-10</span> (Dicoding)
+  Gap Sense Platform &bull; Developed by <span class="highlight">Capstone Team DB10-G002</span> (Dicoding)
 </div>
 """, unsafe_allow_html=True)
