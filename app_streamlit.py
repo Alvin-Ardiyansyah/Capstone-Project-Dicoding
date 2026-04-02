@@ -912,7 +912,7 @@ def _build_score_reason_text(rec: dict) -> str:
 
 
 def render_trend_chart(trend: dict, idx: int):
-    """Render a single skill trend chart using Plotly."""
+    """Render a single skill trend chart using Plotly — professional version."""
     skill = trend["skill"]
     months = trend["months"]
     counts = trend["counts"]
@@ -923,16 +923,33 @@ def render_trend_chart(trend: dict, idx: int):
     hist_months = [m for m in months if m != pred_month]
     hist_counts = counts[:len(hist_months)]
 
+    # Show only last 12 months + prediction for a cleaner chart
+    display_n = 12
+    if len(hist_months) > display_n:
+        hist_months = hist_months[-display_n:]
+        hist_counts = hist_counts[-display_n:]
+
     fig = go.Figure()
 
-    # Historical line
+    # Historical area fill (gradient effect)
     fig.add_trace(go.Scatter(
         x=hist_months,
         y=hist_counts,
-        mode="lines+markers",
+        mode="lines",
         name="Historical",
-        line=dict(color="#f0e040", width=2),
-        marker=dict(size=5, color="#f0e040"),
+        line=dict(color="#f0e040", width=2.5, shape="spline"),
+        fill="tozeroy",
+        fillcolor="rgba(240, 224, 64, 0.08)",
+    ))
+
+    # Historical markers (on top of the fill)
+    fig.add_trace(go.Scatter(
+        x=hist_months,
+        y=hist_counts,
+        mode="markers",
+        name="Data Points",
+        marker=dict(size=5, color="#f0e040", line=dict(width=1, color="#0d0d0d")),
+        showlegend=False,
     ))
 
     # Prediction point + dashed connection
@@ -943,12 +960,33 @@ def render_trend_chart(trend: dict, idx: int):
             mode="lines+markers",
             name="Prediction",
             line=dict(color="#4caf50", width=2, dash="dash"),
-            marker=dict(size=8, color="#4caf50", symbol="star"),
+            marker=dict(size=9, color="#4caf50", symbol="star",
+                        line=dict(width=1.5, color="#0d0d0d")),
         ))
+
+        # Annotation for predicted value
+        fig.add_annotation(
+            x=pred_month,
+            y=pred_value,
+            text=f"<b>{pred_value:.0f}</b>",
+            showarrow=True,
+            arrowhead=0,
+            arrowcolor="#4caf50",
+            ax=0, ay=-28,
+            font=dict(color="#4caf50", size=11, family="Space Mono, monospace"),
+            bgcolor="rgba(13,13,13,0.8)",
+            bordercolor="#4caf50",
+            borderwidth=1,
+            borderpad=3,
+        )
 
     fig.update_layout(
         title=dict(
-            text=f"{format_skill_label(skill)}<br><sup>Historical data through {hist_months[-1] if hist_months else pred_month}, forecast for {pred_month}</sup>",
+            text=(
+                f"<b>{format_skill_label(skill)}</b><br>"
+                f"<sup style='color:#666'>Last {len(hist_months)} months · "
+                f"Forecast: {pred_month}</sup>"
+            ),
             font=dict(family="Space Mono, monospace", size=14, color="#e8e8e0"),
         ),
         plot_bgcolor="#161616",
@@ -961,15 +999,21 @@ def render_trend_chart(trend: dict, idx: int):
         ),
         yaxis=dict(
             title="Job Demand",
-            gridcolor="#2a2a2a",
+            gridcolor="rgba(255,255,255,0.05)",
             gridwidth=0.5,
+            zeroline=False,
         ),
         legend=dict(
             font=dict(size=10),
             bgcolor="rgba(0,0,0,0)",
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
         ),
-        margin=dict(l=40, r=20, t=40, b=60),
-        height=300,
+        margin=dict(l=40, r=20, t=55, b=60),
+        height=320,
     )
 
     st.plotly_chart(fig, use_container_width=True, key=f"chart_{skill}_{idx}")
