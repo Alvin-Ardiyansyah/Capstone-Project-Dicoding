@@ -143,6 +143,8 @@ class SkillTrendPredictor:
         else:
             raise ValueError("Loaded trend model does not support predict().")
         prediction = self.scaler.inverse_transform(prediction_scaled).flatten()
+        # Clamp to non-negative — job demand can never be below zero
+        prediction = np.clip(prediction, 0, None)
 
         result = {}
         for skill, value in zip(self.pivot.columns, prediction):
