@@ -121,12 +121,12 @@ async def lifespan(app: FastAPI):
     model_path = resolve_artifact_path(
         base_dir,
         "TREND_MODEL_PATH",
-        os.path.join("..", "data", "time_series_combined.pkl"),
+        os.path.join("data", "time_series_combined.pkl"),
     )
     dataset_path = resolve_artifact_path(
         base_dir,
         "TREND_DATASET_PATH",
-        os.path.join("..", "data", "skill_trend_dataset_combined.csv"),
+        os.path.join("data", "skill_trend_dataset_combined.csv"),
     )
 
     if os.path.exists(model_path) and os.path.exists(dataset_path):
