@@ -1,7 +1,9 @@
 """
 Skill Trend Predictor Module
-Menggunakan model Keras (Dense NN) untuk memprediksi tren demand skill
+Menggunakan model Dense NN / pkl untuk memprediksi tren demand skill
 berdasarkan data historis job postings.
+Menerapkan EWM smoothing (terinspirasi dari pendekatan ARIMA tim)
+agar grafik lebih halus dan realistis.
 """
 
 import os
@@ -18,7 +20,7 @@ class SkillTrendPredictor:
     def __init__(self, model_path: str, dataset_path: str):
         """
         Args:
-            model_path: Path ke file model Keras (.keras)
+            model_path: Path ke file model (.keras atau .pkl)
             dataset_path: Path ke file CSV dataset skill trend
         """
         self.model = self._load_model(model_path)
@@ -97,22 +99,31 @@ class SkillTrendPredictor:
     def get_historical_trend(self, skill_query: str) -> dict | None:
         """
         Mendapatkan data historis demand per bulan untuk skill tertentu.
+        Menerapkan EWM smoothing (span=4) agar grafik halus dan realistis.
+        Pendekatan smoothing ini terinspirasi dari analisis ARIMA tim (fitur_tambahan).
 
         Returns:
-            Dict dengan keys: skill, months, counts. Atau None jika skill tidak ditemukan.
+            Dict dengan keys: skill, months, counts, counts_raw.
+            Atau None jika skill tidak ditemukan.
         """
         skill = self.find_skill(skill_query)
         if skill is None:
             return None
 
-        series = self.pivot[skill]
-        months = [str(p) for p in series.index]
-        counts = series.values.tolist()
+        raw_series = self.pivot[skill]
+
+        # Apply Exponential Weighted Moving Average for smooth visualization
+        # (inspired by ARIMA team analysis — ewm span=4 for monthly data)
+        smoothed = raw_series.ewm(span=4, adjust=False).mean()
+
+        months = [str(p) for p in smoothed.index]
+        counts = [round(float(v), 2) for v in smoothed.values]
 
         return {
             "skill": skill,
             "months": months,
-            "counts": counts
+            "counts": counts,
+            "counts_raw": raw_series.values.tolist(),
         }
 
     def predict_next_month(self) -> dict:
@@ -141,7 +152,7 @@ class SkillTrendPredictor:
 
     def get_trend_with_prediction(self, skill_query: str) -> dict | None:
         """
-        Gabungan data historis + prediksi bulan depan untuk satu skill.
+        Gabungan data historis (smoothed) + prediksi bulan depan untuk satu skill.
 
         Returns:
             Dict lengkap atau None jika skill tidak ditemukan.
