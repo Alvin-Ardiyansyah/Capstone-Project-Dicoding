@@ -234,6 +234,8 @@ Health check — returns model loading status.
 - [stackoverflow survey](https://www.kaggle.com/datasets/jhotika/stackoverflow-survey)
 - [Future job & skills demand 2025](https://www.kaggle.com/datasets/ahsanneural/future-jobs-and-skills-demand-2025)
 - [Scraping Adzuna API (Data Live April 2026)](https://api.adzuna.com/v1/api)
+- [Job Market & Skills Demand Dataset](https://www.kaggle.com/datasets/muqaddasejaz/job-market-and-skills-demand-dataset)
+- [AI and ML Job Listings USA](https://www.kaggle.com/datasets/kanchana1990/ai-and-ml-job-listings-usa)
 
 ---
 
