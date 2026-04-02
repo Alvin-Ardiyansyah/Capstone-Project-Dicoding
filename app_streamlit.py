@@ -466,17 +466,20 @@ def home_page() -> None:
         """, unsafe_allow_html=True)
 
         if st.session_state.skills_list:
-            edited_skills = st.multiselect(
+            def _sync_skills():
+                st.session_state.skills_list = st.session_state.skill_chip_editor.copy()
+
+            if "skill_chip_editor" not in st.session_state or st.session_state.skill_chip_editor != st.session_state.skills_list:
+                st.session_state.skill_chip_editor = st.session_state.skills_list.copy()
+
+            st.multiselect(
                 "Your current skills",
                 options=st.session_state.skills_list,
-                default=st.session_state.skills_list,
                 format_func=format_skill_label,
                 label_visibility="collapsed",
                 key="skill_chip_editor",
+                on_change=_sync_skills
             )
-            if edited_skills != st.session_state.skills_list:
-                st.session_state.skills_list = edited_skills
-                st.rerun()
         else:
             st.markdown(
                 '<div style="text-align: center; color: #555; padding: 2rem 0; font-family: \'Space Mono\', monospace;">'
