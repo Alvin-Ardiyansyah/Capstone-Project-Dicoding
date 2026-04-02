@@ -97,10 +97,35 @@ The `skill_gap_model` branch is the source of truth for deployment.
 
 ## Technical Notes
 
-- **Trend Dataset**: Generated using an Ornstein-Uhlenbeck process with trend-aware drift (NAIK/STABIL/TURUN), inspired by team ARIMA research in `fitur_tambahan/`.
+### Skill Gap Analysis (Core Engine)
+- Uses **SentenceTransformer** (`all-MiniLM-L6-v2`) to compute semantic embeddings for both user skills and role requirements.
+- Calculates **cosine similarity** between user skill vectors and the canonical skill vocabulary to find the closest matches.
+- Final recommendation score = weighted sum of similarity (80%) and role importance (20%), with role-specific boosting and penalty adjustments.
+- Applies a **diversification filter** (cosine threshold 0.85) to prevent semantically duplicate recommendations in the output.
+- Role-specific **blacklists** and **boost lists** ensure recommendations stay relevant (e.g., Python is not recommended for a Frontend role).
+
+### LLM Explanation & Career Roadmap
+- Powered by **Groq API** with the `llama-3.3-70b-versatile` model.
+- Generates per-skill career consultation paragraphs tailored to the user's experience level, learning background, and target timeline.
+- Uses **strict prompt isolation** to prevent the LLM from mixing existing user skills into missing skill explanations.
+- Produces a separate **career roadmap conclusion** that references the top-3 priority skills from the backend ranking.
+
+### Skill Demand Trend Forecasting
+- **Dataset**: Generated using an Ornstein-Uhlenbeck process with trend-aware drift (NAIK/STABIL/TURUN), inspired by team ARIMA research in `fitur_tambahan/`.
 - **Prediction Model**: Ridge regression trained on MinMax-scaled monthly pivot data. Predictions are clamped to non-negative values.
-- **EWM Smoothing**: Exponential Weighted Moving Average (span=4) is applied to historical counts for smooth visualization.
-- **Input Normalization**: Supports 100+ aliases (e.g., `js` → `javascript`, `golang` → `go`, `power bi` → `power_bi`).
+- **EWM Smoothing**: Exponential Weighted Moving Average (span=4) is applied to historical counts for smooth, realistic chart visualization.
+- **Fuzzy Matching**: Uses `rapidfuzz` (threshold 85%) to match user skill queries to the closest available skill in the dataset.
+
+### Portfolio Project Recommender
+- Content-based recommendation engine with a curated catalog of 50+ portfolio projects across 6 categories (frontend, backend, data analytics, data science, DevOps, cloud).
+- Projects are scored by skill overlap ratio with role-category boosting and impact weighting.
+- Uses `difflib` fuzzy matching to tolerate minor skill name variations in user input.
+
+### Input Normalization
+- Supports **100+ aliases** (e.g., `js` → `javascript`, `golang` → `go`, `power bi` → `power_bi`).
+- Automatically splits combined skills (e.g., `html css` → `["html", "css"]`).
+- Filters out soft skills, seniority keywords, and experience phrases to isolate technical skills only.
+- Applies regex-based noise removal for patterns like "years of experience" or degree mentions.
 
 ## License
 
